@@ -2,10 +2,6 @@
 
 Client-side form validation based on your Play model validation annotations.
 
-## Demo
-
-[http://play-jqvalidate.appspot.com/](http://play-jqvalidate.appspot.com/) is an example of a form validated using this module.
-
 ## Dependencies
 
 The `play-jqvalidate` JavaScript components depend on the [jQuery](http://jquery.com/) library.
@@ -46,14 +42,14 @@ The `jqvalidate.field` tag is identical to the built-in Play field tag except it
 
 The module currently supports the following annotations:
 
-	* `Required`
-	* `Email`
-	* `Min`
-	* `Max`
-	* `Range`
-	* `MinSize`
-	* `MaxSize`
-	* `URL`
+* `Required`
+* `Email`
+* `Min`
+* `Max`
+* `Range`
+* `MinSize`
+* `MaxSize`
+* `URL`
 
 ## Example
 
