@@ -1,6 +1,6 @@
 # play-jqvalidate
 
-Client-side form validation based on your Play model validation annotations.
+Client-side form validation based on your [Play](http://playframework.org) model validation annotations.
 
 ## Dependencies
 
@@ -28,7 +28,7 @@ The `jqvalid.form` tag is identical to the built-in Play form tag except it outp
 
 ### Use the `jqvalid.field` tag in your view
 
-The `jqvalidate.field` tag is identical to the built-in Play field tag except it provides an extra property on the field, `field.validationData`. You need to put this data in an HTML5 data attribute called `data-validation` on your `input`, `select`, or `textarea` element.  
+The `jqvalidate.field` tag is identical to the built-in Play field tag except it provides an extra property on the field, `field.validationData`. You need to put this data in an HTML5 data attribute called `data-validate` on your `input`, `select`, or `textarea` element.  
 
     #{jqvalid.field 'task.details'}
 		<p>
@@ -101,7 +101,7 @@ The module currently supports the following annotations:
 
 ### Result
 
-You can view the example form live at [http://play-jqvalidate.appspot.com/](http://play-jqvalidate.appspot.com/)
+You can view the example form live at [http://play-jqvalidate.appspot.com/](http://play-jqvalidate.appspot.com/). The complete source code is available in this module's `samples-and-tests` folder.
 
 
 
