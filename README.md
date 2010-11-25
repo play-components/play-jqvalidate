@@ -28,7 +28,7 @@ After installing the module, add the following to your `application.conf` to ena
 
 ### Include the module JavaScript
 
-The module JavaScript file is called `play-jqvalidate.min.js` can be found in the module `lib` directory. This script needs to be included anywhere on your page. The module JavaScript contains compressed copies of the [jQuery Validation Plugin](http://bassistance.de/jquery-plugins/jquery-plugin-validation/) and the [jQuery Metadata Plugin](http://plugins.jquery.com/project/metadata). 
+The module JavaScript file is at `lib/play-jqvalidate.min.js`. This script needs to be copied to your static directory or CDN and included anywhere on your page. The module JavaScript contains compressed copies of the [jQuery Validation Plugin](http://bassistance.de/jquery-plugins/jquery-plugin-validation/) and the [jQuery Metadata Plugin](http://plugins.jquery.com/project/metadata). 
 
 ### Use the `jqvalid.form` tag in your view
 
