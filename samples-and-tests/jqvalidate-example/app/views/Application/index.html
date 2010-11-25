@@ -5,33 +5,33 @@
 
 <fieldset>
 <legend>Create a task</legend>
-#{jqvalid.form @Application.index()}
+#{jqvalid.form @Application.save()}
   	#{jqvalid.field 'task.details'}
 		<p>
 		  <label>&{field.name}</label>
 		  <textarea data-validate="${field.validationData}" id="${field.id}" name="${field.name}" class="${field.errorClass}">${field.value}</textarea>
-		  <span class="error">${field.error}</span>
+		  <label class="error">${field.error}</label>
 		</p>
 	#{/}
 	#{jqvalid.field 'task.priority'}
 		<p>
 		  <label>&{field.name}</label>
 		  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
-		  <span class="error">${field.error}</span>
+		  <label class="error">${field.error}</label>
 		</p>
 	#{/}
 	#{jqvalid.field 'task.authorEmail'}
 		<p>
 		  <label>&{field.name}</label>
 		  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
-		  <span class="error">${field.error}</span>
+		  <label class="error">${field.error}</label>
 		</p>
 	#{/}
 	#{jqvalid.field 'task.authorUrl'}
 		<p>
 		  <label>&{field.name}</label>
 		  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
-		  <span class="error">${field.error}</span>
+		  <label class="error">${field.error}</label>
 		</p>
 	#{/}
 	<p>

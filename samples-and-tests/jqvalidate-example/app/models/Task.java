@@ -3,6 +3,8 @@ package models;
 import java.util.List;
 import java.util.Set;
 
+import siena.*;
+
 import play.*;
 import play.data.validation.Email;
 import play.data.validation.Max;
@@ -12,7 +14,6 @@ import play.data.validation.Range;
 import play.data.validation.Required;
 import play.data.validation.URL;
 import play.data.validation.Valid;
-import play.db.jpa.*;
 
 import javax.persistence.*;
 
