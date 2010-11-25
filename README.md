@@ -2,6 +2,10 @@
 
 Client-side form validation based on your [Play](http://playframework.org) model validation annotations.
 
+## Quick Demo
+
+[http://play-jqvalidate.appspot.com/](http://play-jqvalidate.appspot.com/) is an example form using this module for client-side validation. The complete source code is available in this module's `samples-and-tests` folder.
+
 ## Dependencies
 
 The `play-jqvalidate` JavaScript components depend on the [jQuery](http://jquery.com/) library.
