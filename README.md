@@ -36,7 +36,7 @@ The `jqvalid.form` tag is identical to the built-in Play form tag except it outp
 
 ### Use the `jqvalid.field` tag in your view
 
-The `jqvalidate.field` tag is identical to the built-in Play field tag except it puts an extra property on the field, `field.validationData`. You need to put this data in an HTML5 data attribute called `data-validate` on your `input`, `select`, or `textarea` element.  
+The `jqvalid.field` tag is identical to the built-in Play field tag except it puts an extra property on the field, `field.validationData`. You need to put this data in an HTML5 data attribute called `data-validate` on your `input`, `select`, or `textarea` element.  
 
     #{jqvalid.field 'task.details'}
 		<p>
