@@ -1,0 +1,7 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+task.details=Details
+task.priority=Priority
+task.authorEmail=Your Email
+task.authorUrl=Related URL

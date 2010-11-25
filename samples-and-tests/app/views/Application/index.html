@@ -1,0 +1,44 @@
+#{extends 'main.html' /}
+
+
+<h1>Play! JQuery Form Validation Example</h1>
+
+<fieldset>
+<legend>Create a task</legend>
+#{jqvalid.form @Application.index()}
+  	#{jqvalid.field 'task.details'}
+		<p>
+		  <label>&{field.name}</label>
+		  <textarea data-validate="${field.validationData}" id="${field.id}" name="${field.name}" class="${field.errorClass}">${field.value}</textarea>
+		  <span class="error">${field.error}</span>
+		</p>
+	#{/}
+	#{jqvalid.field 'task.priority'}
+		<p>
+		  <label>&{field.name}</label>
+		  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+		  <span class="error">${field.error}</span>
+		</p>
+	#{/}
+	#{jqvalid.field 'task.authorEmail'}
+		<p>
+		  <label>&{field.name}</label>
+		  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+		  <span class="error">${field.error}</span>
+		</p>
+	#{/}
+	#{jqvalid.field 'task.authorUrl'}
+		<p>
+		  <label>&{field.name}</label>
+		  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+		  <span class="error">${field.error}</span>
+		</p>
+	#{/}
+	<p>
+		<input type="submit" value='Create Task'>
+	</p>
+#{/jqvalid.form}
+</fieldset>
+
+
+<a href="http://github.com/murz/play-jqvalidate"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://assets1.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_right_darkblue_121621.png&path=" alt="Fork me on GitHub"></a>

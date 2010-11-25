@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 
 import play.Logger;
@@ -53,7 +54,7 @@ public class JqValidateTags extends FastTags {
             actionDef.url += separator + "x-http-method-override=" + actionDef.method.toUpperCase();
             actionDef.method = "POST";
         }
-        String id = args.containsKey("id") ? (String)args.get("id") : "play-jqvalid-form__"+(Math.random()*10000); 
+        String id = args.containsKey("id") ? (String)args.get("id") : "play-jqvalid-form__"+UUID.randomUUID(); 
         out.println("<form id=\""+ id +"\" action=\"" + actionDef.url + "\" method=\"" + actionDef.method.toUpperCase() + "\" accept-charset=\"utf-8\" enctype=\"" + enctype + "\" " + serialize(args, "action", "method", "accept-charset", "enctype") + ">");
         if (!("GET".equals(actionDef.method))) {
             _authenticityToken(args, body, out, template, fromLine);
