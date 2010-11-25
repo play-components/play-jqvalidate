@@ -22,13 +22,17 @@ After installing the module, add the following to your `application.conf` to ena
 
 ## Usage
 
+### Include the module JavaScript
+
+The module JavaScript file is called `play-jqvalidate.min.js` can be found in the module `lib` directory. This script needs to be included anywhere on your page. The module JavaScript contains compressed copies of the [jQuery Validation Plugin](http://bassistance.de/jquery-plugins/jquery-plugin-validation/) and the [jQuery Metadata Plugin](http://plugins.jquery.com/project/metadata). 
+
 ### Use the `jqvalid.form` tag in your view
 
 The `jqvalid.form` tag is identical to the built-in Play form tag except it outputs some JavaScript that prepares the form to be validated by the jQuery validation plugin.
 
 ### Use the `jqvalid.field` tag in your view
 
-The `jqvalidate.field` tag is identical to the built-in Play field tag except it provides an extra property on the field, `field.validationData`. You need to put this data in an HTML5 data attribute called `data-validate` on your `input`, `select`, or `textarea` element.  
+The `jqvalidate.field` tag is identical to the built-in Play field tag except it puts an extra property on the field, `field.validationData`. You need to put this data in an HTML5 data attribute called `data-validate` on your `input`, `select`, or `textarea` element.  
 
     #{jqvalid.field 'task.details'}
 		<p>
