@@ -26,14 +26,7 @@ import play.templates.GroovyTemplate.ExecutableTemplate;
 @FastTags.Namespace("jqvalid")
 public class JqValidateTags extends FastTags {
     
-    /**
-     * Generates a html form element linked to a controller action, backed by client-side validation
-     * @param args tag attributes
-     * @param body tag inner body
-     * @param out the output writer
-     * @param template enclosing template
-     * @param fromLine template line number where the tag is defined
-     */
+    
     public static void _form(Map<?, ?> args, Closure body, PrintWriter out, ExecutableTemplate template, int fromLine) {
         ActionDefinition actionDef = (ActionDefinition) args.get("arg");
         if (actionDef == null) {
@@ -63,11 +56,10 @@ public class JqValidateTags extends FastTags {
         out.println("</form>");
     }
     
-    private static String buildValidationDataString(Field f){
+    private static String buildValidationDataString(Field f)throws Exception{
         StringBuilder result = new StringBuilder("{");
         List<String> rules = new ArrayList<String>();
         Map<String,String> messages = new HashMap<String,String>();
-        try{
         Required required = f.getAnnotation(Required.class);
         if(required != null){
             rules.add("required:true");
@@ -93,11 +85,10 @@ public class JqValidateTags extends FastTags {
         if(range != null){
             rules.add("range:["+new Double(range.min()).toString()+", "+new Double(range.max()).toString()+"]");
             if(range.message() != null){
-                messages.put("range", Messages.get(range.message(), null, min.value(), max.value()));
+                messages.put("range", Messages.get(range.message(), null, range.min(), range.max()));
             }
         }
         MaxSize maxSize = f.getAnnotation(MaxSize.class);
-        String t = maxSize == null ? "null" : "not null";
         if(maxSize != null){
             rules.add("maxlength:"+new Integer(maxSize.value()).toString());
             if(maxSize.message() != null){
@@ -125,9 +116,6 @@ public class JqValidateTags extends FastTags {
                 messages.put("email", Messages.get(email.message()));
             }
         }
-        }catch(Exception e){
-            Logger.info(e.getMessage());
-        }
         if(rules.size() > 0){
             boolean first = true;
             for(String rule : rules){
@@ -153,10 +141,7 @@ public class JqValidateTags extends FastTags {
                 result.append("\"");
                 result.append(":");
                 result.append("\"");
-                try{
-                    result.append(messages.get(key));
-                }catch(Exception e){
-                }
+                result.append(messages.get(key));
                 result.append("\"");
             }
             result.append("}");
@@ -175,9 +160,6 @@ public class JqValidateTags extends FastTags {
         field.put("error", Validation.error(_arg));
         field.put("errorClass", field.get("error") != null ? "hasError" : "");
         
-        
-        
-//        field.put("validationData", );
         String[] pieces = _arg.split("\\.");
         Object obj = body.getProperty(pieces[0]);
         if(obj != null){
