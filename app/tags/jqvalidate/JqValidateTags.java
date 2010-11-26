@@ -55,16 +55,12 @@ public class JqValidateTags extends FastTags {
             actionDef.method = "POST";
         }
         String id = args.containsKey("id") ? (String)args.get("id") : "play-jqvalid-form__"+UUID.randomUUID(); 
-        out.println("<form id=\""+ id +"\" action=\"" + actionDef.url + "\" method=\"" + actionDef.method.toUpperCase() + "\" accept-charset=\"utf-8\" enctype=\"" + enctype + "\" " + serialize(args, "action", "method", "accept-charset", "enctype") + ">");
+        out.println("<form class=\"play-jqvalid-form\" id=\""+ id +"\" action=\"" + actionDef.url + "\" method=\"" + actionDef.method.toUpperCase() + "\" accept-charset=\"utf-8\" enctype=\"" + enctype + "\" " + serialize(args, "action", "method", "accept-charset", "enctype") + ">");
         if (!("GET".equals(actionDef.method))) {
             _authenticityToken(args, body, out, template, fromLine);
         }
         out.println(JavaExtensions.toString(body));
         out.println("</form>");
-        out.print("<script type='text/javascript'> $(document).ready(function(){ ");
-        out.print("$.metadata.setType('html5'); ");
-        out.print("$('#"+id+"').validate({ meta:'validate' }); ");
-        out.print("}); </script>");
     }
     
     private static String buildValidationDataString(Field f){
@@ -161,14 +157,10 @@ public class JqValidateTags extends FastTags {
                     result.append(messages.get(key));
                 }catch(Exception e){
                 }
-                Logger.info("hi6");
                 result.append("\"");
-                Logger.info("hi");
             }
-            Logger.info("hi");
             result.append("}");
         }
-        Logger.info(result.toString());
         result.append("}");
         return result.toString();
     }
