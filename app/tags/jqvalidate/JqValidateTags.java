@@ -32,6 +32,10 @@ public class JqValidateTags extends FastTags {
         if (actionDef == null) {
             actionDef = (ActionDefinition) args.get("action");
         }
+        // test if the action exist
+        if(actionDef == null){
+            return;
+        }
         String enctype = (String) args.get("enctype");
         if (enctype == null) {
             enctype = "application/x-www-form-urlencoded";
