@@ -34,6 +34,37 @@
 		  <label class="error">${field.error}</label>
 		</p>
 	#{/}
+	#{jqvalid.field 'task.authorIPv4'}
+		<p>
+		  <label>&{field.name}</label>
+		  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+		  <label class="error">${field.error}</label>
+		</p>
+	#{/}
+  #{jqvalid.field 'task.authorIPv6'}
+    <p>
+      <label>&{field.name}</label>
+      <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+      <label class="error">${field.error}</label>
+    </p>
+  #{/}
+  
+  #{jqvalid.field 'task.authorPhone'}
+    <p>
+      <label>&{field.name}</label>
+      <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+      <label class="error">${field.error}</label>
+    </p>
+  #{/}
+  
+   #{jqvalid.field 'task.countryAbbreviation'}
+    <p>
+      <label>&{field.name}</label>
+      <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+      <label class="error">${field.error}</label>
+    </p>
+  #{/}
+
 	<p>
 		<input type="submit" value='Create Task'>
 	</p>

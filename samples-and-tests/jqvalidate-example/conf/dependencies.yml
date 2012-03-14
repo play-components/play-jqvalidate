@@ -4,6 +4,6 @@ require:
     - play
     - play -> gae 1.1
     - play -> siena 2.0.7
-    - play -> jqvalidate head
+    - play -> jqvalidate 1.0
     
 

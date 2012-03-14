@@ -64,20 +64,33 @@ public class JqValidateTags extends FastTags {
         StringBuilder result = new StringBuilder("{");
         List<String> rules = new ArrayList<String>();
         Map<String,String> messages = new HashMap<String,String>();
-        Required required = f.getAnnotation(Required.class);
-        if(required != null){
-            rules.add("required:true");
-            if(required.message() != null){
+        
+	// ----------------------------
+	// Required
+	// ----------------------------
+	Required required = f.getAnnotation(Required.class);
+	if (required != null) {
+	    rules.add("required:true");
+	    if (required.message() != null){
                 messages.put("required", Messages.get(required.message()));
-            }
-        }
-        Min min = f.getAnnotation(Min.class);
-        if(min != null){
-            rules.add("min:"+new Double(min.value()).toString());
-            if(min.message() != null){
-                messages.put("min", Messages.get(min.message(), null, min.value()));
-            }
-        }
+	    }
+	}
+
+	// ----------------------------
+	// Min
+	// ----------------------------
+	Min min = f.getAnnotation(Min.class);
+	if (min != null) {
+	    rules.add("min:" + new Double(min.value()).toString());
+	    if (min.message() != null) {
+		messages.put("min",
+			Messages.get(min.message(), null, min.value()));
+	    }
+	}
+
+	// ----------------------------
+	// Max
+	// ----------------------------
         Max max = f.getAnnotation(Max.class);
         if(max != null){
             rules.add("max:"+new Double(max.value()).toString());
@@ -85,6 +98,9 @@ public class JqValidateTags extends FastTags {
                 messages.put("max", Messages.get(max.message(), null, max.value()));
             }
         }
+	// ----------------------------
+	// Range
+	// ----------------------------
         Range range = f.getAnnotation(Range.class);
         if(range != null){
             rules.add("range:["+new Double(range.min()).toString()+", "+new Double(range.max()).toString()+"]");
@@ -92,6 +108,9 @@ public class JqValidateTags extends FastTags {
                 messages.put("range", Messages.get(range.message(), null, range.min(), range.max()));
             }
         }
+	// ----------------------------
+	// MaxSize
+	// ----------------------------
         MaxSize maxSize = f.getAnnotation(MaxSize.class);
         if(maxSize != null){
             rules.add("maxlength:"+new Integer(maxSize.value()).toString());
@@ -99,6 +118,9 @@ public class JqValidateTags extends FastTags {
                 messages.put("maxlength", Messages.get(maxSize.message(), null, maxSize.value()));
             }
         }
+	// ----------------------------
+	// MinSize
+	// ----------------------------
         MinSize minSize = f.getAnnotation(MinSize.class);
         if(minSize != null){
             rules.add("minlength:"+new Integer(minSize.value()).toString());
@@ -106,6 +128,10 @@ public class JqValidateTags extends FastTags {
                 messages.put("minlength", Messages.get(minSize.message(), null, minSize.value()));
             }
         }
+        
+	// ----------------------------
+	// URL
+	// ----------------------------
         URL url = f.getAnnotation(URL.class);
         if(url != null){
             rules.add("url:true");
@@ -113,6 +139,10 @@ public class JqValidateTags extends FastTags {
                 messages.put("url", Messages.get(url.message()));
             }
         }
+        
+	// ----------------------------
+	// Email
+	// ----------------------------
         Email email = f.getAnnotation(Email.class);
         if(email != null){
             rules.add("email:true");
@@ -120,6 +150,52 @@ public class JqValidateTags extends FastTags {
                 messages.put("email", Messages.get(email.message()));
             }
         }
+                
+	// ----------------------------
+	// IPv4Address
+	// ----------------------------
+	IPv4Address ipv4Address = f.getAnnotation(IPv4Address.class);
+	if (ipv4Address != null) {
+	    rules.add("ipv4:true");
+	    if (ipv4Address.message() != null) {
+		messages.put("ipv4", Messages.get(ipv4Address.message()));
+	    }
+	}
+	
+	// ----------------------------
+	// IPv6Address
+	// ----------------------------
+	IPv6Address ipv6Address = f.getAnnotation(IPv6Address.class);
+	if (ipv6Address != null) {
+	    rules.add("ipv6:true");
+	    if (ipv6Address.message() != null) {
+		messages.put("ipv6", Messages.get(ipv6Address.message()));
+	    }
+	}
+	
+	// ----------------------------
+	// Match
+	// ----------------------------
+	Match match = f.getAnnotation(Match.class);
+	if (match != null) {
+    	    rules.add("pattern:"+ "/^" + match.value() + "?$/");
+    	    if (match.message() != null) {
+    		messages.put("pattern", Messages.get(match.message(), null, match.value()));
+    	    }
+	}
+	
+	// ----------------------------
+	// Phone
+	// ----------------------------
+	Phone phone = f.getAnnotation(Phone.class);
+	// Match must not be defined
+	if (phone != null && match == null) {
+	    rules.add("pattern:/^([\\+][0-9]{1,3}([ \\.\\-]))?([\\(]{1}[0-9]{2,6}[\\)])?([0-9 \\.\\-/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$/i");	
+	    if (phone.message() != null) {
+		messages.put("pattern", Messages.get(phone.message()));
+	    }
+	}
+        
         if(rules.size() > 0){
             boolean first = true;
             for(String rule : rules){
