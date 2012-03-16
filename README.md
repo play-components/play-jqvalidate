@@ -50,13 +50,18 @@ The `jqvalid.field` tag is identical to the built-in Play field tag except it pu
 
 The module currently supports the following annotations:
 
-* `Required`
+
 * `Email`
+* `IPv4Address`
+* `IPv6Address`
+* `Match`
 * `Min`
 * `Max`
-* `Range`
 * `MinSize`
 * `MaxSize`
+* `Phone`
+* `Range`
+* `Required`
 * `URL`
 
 ## Example
@@ -69,6 +74,14 @@ The module currently supports the following annotations:
 	    @Required @Email public String authorEmail;
 	    @Required @URL public String authorUrl;
 	    @Required public String details;
+		
+		@IPv4Address public String authorIPv4;
+		@IPv6Address public String authorIPv6;
+		
+		@Phone public String authorPhone;
+		
+		@Match("[A-Z]{3}") 
+		public String countryAbbreviation;
 	}
 
 ### View
@@ -102,6 +115,34 @@ The module currently supports the following annotations:
 			  <span class="error">${field.error}</span>
 			</p>
 		#{/}
+		#{jqvalid.field 'task.authorIPv4'}
+			<p>
+			  <label>&{field.name}</label>
+			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <label class="error">${field.error}</label>
+		</p>
+		#{/}
+		#{jqvalid.field 'task.authorIPv6'}
+			<p>
+			  <label>&{field.name}</label>
+			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <label class="error">${field.error}</label>
+			</p>
+		#{/}  
+		#{jqvalid.field 'task.authorPhone'}
+			<p>
+			  <label>&{field.name}</label>
+			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <label class="error">${field.error}</label>
+			</p>
+		#{/}	  
+		#{jqvalid.field 'task.countryAbbreviation'}
+			<p>
+			  <label>&{field.name}</label>
+			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <label class="error">${field.error}</label>
+			</p>
+		#{/}  
 		<p>
 			<input type="submit" value='Create Task'>
 		</p>
