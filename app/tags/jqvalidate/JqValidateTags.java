@@ -14,7 +14,20 @@ import java.util.UUID;
 
 
 import play.Logger;
-import play.data.validation.*;
+import play.data.validation.Email;
+import play.data.validation.IPv4Address;
+import play.data.validation.IPv6Address;
+import play.data.validation.Match;
+import play.data.validation.Max;
+import play.data.validation.MaxSize;
+import play.data.validation.Min;
+import play.data.validation.MinSize;
+import play.data.validation.Phone;
+import play.data.validation.Range;
+import play.data.validation.Required;
+import play.data.validation.URL;
+import play.data.validation.Validation;
+import play.data.validation.jqvalidate.*;
 import play.i18n.Messages;
 import play.libs.I18N;
 import play.mvc.Router.ActionDefinition;
@@ -199,6 +212,18 @@ public class JqValidateTags extends FastTags {
 	    rules.add("pattern:/^([\\+][0-9]{1,3}([ \\.\\-]))?([\\(]{1}[0-9]{2,6}[\\)])?([0-9 \\.\\-/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$/i");	
 	    if (phone.message() != null) {
 		messages.put("pattern", Messages.get(phone.message()));
+	    }
+	}
+	
+	// ----------------------------
+	// HEXColor
+	// ----------------------------
+	HEXColor hexColor = f.getAnnotation(HEXColor.class);
+	// Match must not be defined
+	if (hexColor != null && match == null) {
+	    rules.add("pattern:/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/");
+	    if (hexColor.message() != null) {
+	    	messages.put("pattern", Messages.get(hexColor.message()));
 	    }
 	}
         
