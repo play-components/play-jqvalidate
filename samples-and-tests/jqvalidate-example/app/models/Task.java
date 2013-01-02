@@ -18,6 +18,7 @@ import play.data.validation.Range;
 import play.data.validation.Required;
 import play.data.validation.URL;
 import play.data.validation.Valid;
+import play.data.validation.jqvalidate.HexColor;
 
 import javax.persistence.*;
 
@@ -34,4 +35,10 @@ public class Task extends Model {
     
     @Match("[A-Z]{3}") 
     public String countryAbbreviation;
+    
+    @Match("^[0-9]{10,19}$")
+    public String creditCardNumber;
+    
+    @HexColor
+    public String color;
 }

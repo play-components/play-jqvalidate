@@ -64,6 +64,22 @@
       <label class="error">${field.error}</label>
     </p>
   #{/}
+  
+   #{jqvalid.field 'task.creditCardNumber'}
+    <p>
+      <label>&{field.name}</label>
+      <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+      <label class="error">${field.error}</label>
+    </p>
+  #{/jqvalid.field}
+  
+  #{jqvalid.field 'task.color'}
+    <p>
+      <label>&{field.name}</label>
+      <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+      <label class="error">${field.error}</label>
+    </p>
+  #{/jqvalid.field}
 
 	<p>
 		<input type="submit" value='Create Task'>

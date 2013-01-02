@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # General temp files
 .DS_Store
 *.ser
@@ -25,3 +24,8 @@ test-result
 logs
 server.pid
 dist
+
+# Example
+samples-and-tests/jqvalidate-example/lib
+samples-and-tests/jqvalidate-example/modules
+

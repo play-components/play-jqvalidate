@@ -197,7 +197,15 @@ public class JqValidateTags extends FastTags {
 	// ----------------------------
 	Match match = f.getAnnotation(Match.class);
 	if (match != null) {
-    	    rules.add("pattern:"+ "/^" + match.value() + "?$/");
+	    String rule = match.value();
+	    if(!rule.startsWith("^")){
+		rule = "^" + rule;
+	    }
+	    if(!rule.endsWith("$")){
+		rule = rule + "$";
+	    }
+	    
+    	    rules.add("pattern:"+ "/" + rule + "/");
     	    if (match.message() != null) {
     		messages.put("pattern", Messages.get(match.message(), null, match.value()));
     	    }
@@ -218,7 +226,7 @@ public class JqValidateTags extends FastTags {
 	// ----------------------------
 	// HEXColor
 	// ----------------------------
-	HEXColor hexColor = f.getAnnotation(HEXColor.class);
+	HexColor hexColor = f.getAnnotation(HexColor.class);
 	// Match must not be defined
 	if (hexColor != null && match == null) {
 	    rules.add("pattern:/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/");

@@ -19,7 +19,7 @@ import net.sf.oval.configuration.annotation.Constraint;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.PARAMETER })
-@Constraint(checkWith = HEXColorCheck.class)
-public @interface HEXColor {
-    String message() default HEXColorCheck.mes;
+@Constraint(checkWith = HexColorCheck.class)
+public @interface HexColor {
+    String message() default HexColorCheck.mes;
 }

@@ -16,14 +16,14 @@ import net.sf.oval.exception.OValException;
  * Regex code used : ^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$
  * @author Nicolas Forney [nicolas@eforney.com]
  */
-public class HEXColorCheck extends AbstractAnnotationCheck<HEXColor> {
+public class HexColorCheck extends AbstractAnnotationCheck<HexColor> {
 
 	final static String mes = "validation.hexcolor";
 	private static final String HEX_PATTERN = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
 	private static final Pattern pattern = Pattern.compile(HEX_PATTERN);
 	
 	@Override
-    public void configure(HEXColor hexColor) {
+    public void configure(HexColor hexColor) {
         setMessage(hexColor.message());
     }
 	
