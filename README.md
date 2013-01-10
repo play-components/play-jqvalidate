@@ -63,6 +63,7 @@ The module currently supports the following annotations:
 * `Range`
 * `Required`
 * `URL`
+* `HexColor`
 
 ## Example
 
@@ -82,6 +83,12 @@ The module currently supports the following annotations:
 		
 		@Match("[A-Z]{3}") 
 		public String countryAbbreviation;
+        
+        @Match("^[0-9]{10,19}$")
+        public String creditCardNumber;
+        
+        @HexColor
+        public String color;
 	}
 
 ### View
@@ -142,7 +149,23 @@ The module currently supports the following annotations:
 			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
 			  <label class="error">${field.error}</label>
 			</p>
-		#{/}  
+		#{/} 
+        #{jqvalid.field 'task.creditCardNumber'}
+            <p>
+              <label>&{field.name}</label>
+              <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+              <label class="error">${field.error}</label>
+            </p>
+        #{/jqvalid.field}
+      
+        #{jqvalid.field 'task.color'}
+            <p>
+              <label>&{field.name}</label>
+              <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+              <label class="error">${field.error}</label>
+            </p>
+        #{/jqvalid.field}
+
 		<p>
 			<input type="submit" value='Create Task'>
 		</p>

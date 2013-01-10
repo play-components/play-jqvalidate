@@ -14,6 +14,14 @@
             <include name="*.jar"/>
         </fileset>
     </path>
+    
+    <path id="test.classpath">
+      <pathelement location="${classes}" />
+      <pathelement location="${play.path}/framework/lib/junit.jar" />
+        <fileset dir="${lib}">
+          <include name="**/*.jar"/>
+        </fileset>
+    </path>
 
     <target name="build" depends="compile">
 
@@ -41,5 +49,46 @@
             <classpath refid="project.classpath" />
         </javac>
     </target>
+    
+    <!-- Launch all *Test.java -->
+
+    <target name="test" depends="build" description="run tests suite">
+        <condition property="playExtension" value=".bat">
+            <and><os family="windows"/></and>
+        </condition>
+        <condition property="playExtension" value="">
+            <and><os family="unix"/></and>
+        </condition>
+
+        <antcall target="play-test">
+            <param name="testAppPath" value="${basedir}/samples-and-tests/jqvalidate-example"/>
+             <param name="testAppPath" value="${basedir}/samples-and-tests/just-test-cases"/>
+        </antcall>
+        
+        <antcall target="test-success" />
+    </target>
+
+     <target name="play-test">
+        <echo message="play auto-test ${testAppPath} (wait)" />
+        <exec executable="${play.path}/play${playExtension}" failonerror="true">
+            <arg value="auto-test"/>
+            <arg value="${testAppPath}"/>
+        </exec>
+        <available file="${testAppPath}/test-result/result.passed" property="${testAppPath}testPassed" />
+        <fail message="Last test has failed ! (Check results in file://${testAppPath}/test-result)">
+            <condition>
+                <not>
+                    <isset property="${testAppPath}testPassed"/>
+                </not>
+            </condition>
+        </fail>
+    </target> 
+    
+    <target name="test-success">
+        <echo message="*****************" />
+        <echo message="All test passed !" />
+        <echo message="*****************" />
+    </target>
+    
 
 </project>

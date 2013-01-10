@@ -1,0 +1,28 @@
+%{
+ def _min = ".min"
+ if (play.mode.isDev()) {
+  _min = "";
+ }
+}%
+*{ Definition of the script }*
+#{set 'jqValidateJavascripts'}
+
+ <script src="/jqvalidate/javascripts/jquery.metadata${_min}.js" type="text/javascript" charset="utf-8"></script>
+ <script src="/jqvalidate/javascripts/jquery.validate${_min}.js" type="text/javascript" charset="utf-8"></script>
+ #{if _additionalMethods}
+  <script src="/jqvalidate/javascripts/additional-methods${_min}.js" type="text/javascript" charset="utf-8"></script>
+ #{/if}
+ #{if _defaultComponent}
+  <script src="/jqvalidate/javascripts/play-jqvalidate${_min}.js" type="text/javascript" charset="utf-8"></script>
+  #{/if}
+#{/set}
+
+*{ Script insertion }*
+%{if(_tagValue){}%
+ #{set _tagValue}
+ #{get _tagValue /}
+ #{get 'jqValidateJavascripts' /}
+#{/set}
+%{ }else{ }%
+ #{get 'jqValidateJavascripts' /}
+%{ } }%

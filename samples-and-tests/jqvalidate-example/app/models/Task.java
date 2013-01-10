@@ -33,7 +33,7 @@ public class Task extends Model {
     
     @Phone public String authorPhone;
     
-    @Match("[A-Z]{3}") 
+    @Match("[A-Z]{3}")
     public String countryAbbreviation;
     
     @Match("^[0-9]{10,19}$")

@@ -9,5 +9,5 @@ task.authorIPv4=Your IP (V4 format)
 task.authorIPv6=Your IP (V6 format)
 task.authorPhone=Phone
 task.countryAbbreviation=Country abbreviation
-task.creditCardNumber=Cresdit card number
+task.creditCardNumber=Credit card number
 task.color=Hex color(#RRGGBB or #RGB)
