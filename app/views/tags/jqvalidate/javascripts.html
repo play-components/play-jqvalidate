@@ -18,11 +18,11 @@
 #{/set}
 
 *{ Script insertion }*
-%{if(_tagValue){}%
+#{if _tagValue}
  #{set _tagValue}
- #{get _tagValue /}
+  #{get _tagValue /}
+  #{get 'jqValidateJavascripts' /}
+ #{/set}
+#{/if} #{else}
  #{get 'jqValidateJavascripts' /}
-#{/set}
-%{ }else{ }%
- #{get 'jqValidateJavascripts' /}
-%{ } }%
+#{/else}
