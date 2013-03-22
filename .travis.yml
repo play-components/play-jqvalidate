@@ -1,0 +1,14 @@
+language: java
+jdk:
+  - oraclejdk6
+  - oraclejdk7
+  - openjdk6
+  - openjdk7
+env:
+  - PLAY_VERSION=1.2.5
+before_script:
+  - wget http://download.playframework.org/releases/play-${PLAY_VERSION}.zip
+  - unzip -q play-${PLAY_VERSION}.zip
+script: ant test -Dplay.path=play-${PLAY_VERSION}
+notifications:
+  email: false

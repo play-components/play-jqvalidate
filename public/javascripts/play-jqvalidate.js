@@ -4,10 +4,7 @@
  * 
  */
 (function ($) {
-	$.metadata.setType('html5');
 	$(document).ready(function () {
-		$('.play-jqvalid-form').validate({
-			meta : 'validate'
-		});
+		$('.play-jqvalid-form').validate();
 	});
 })(jQuery);

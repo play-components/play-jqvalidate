@@ -60,14 +60,26 @@
             <and><os family="unix"/></and>
         </condition>
 
+        <antcall target="play-dependencies">
+            <param name="testAppPath" value="${basedir}/samples-and-tests/just-test-cases"/>
+        </antcall>
+        
         <antcall target="play-test">
-            <param name="testAppPath" value="${basedir}/samples-and-tests/jqvalidate-example"/>
-             <param name="testAppPath" value="${basedir}/samples-and-tests/just-test-cases"/>
+            <param name="testAppPath" value="${basedir}/samples-and-tests/just-test-cases"/>
         </antcall>
         
         <antcall target="test-success" />
     </target>
 
+    <target name="play-dependencies">
+        <echo message="play dependencies ${testAppPath}" />
+        <exec executable="${play.path}/play${playExtension}" failonerror="true">
+            <arg value="dependencies"/>
+            <arg value="${testAppPath}"/>
+            <arg value="--debug"/>
+        </exec>
+    </target> 
+    
      <target name="play-test">
         <echo message="play auto-test ${testAppPath} (wait)" />
         <exec executable="${play.path}/play${playExtension}" failonerror="true">

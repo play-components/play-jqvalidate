@@ -1,4 +1,4 @@
-# play-jqvalidate
+# play-jqvalidate [![Build Status](https://travis-ci.org/xael-fry/play-jqvalidate.png)](https://travis-ci.org/xael-fry/play-jqvalidate)
 
 Client-side form validation based on your [Play](http://playframework.org) model validation annotations.
 
