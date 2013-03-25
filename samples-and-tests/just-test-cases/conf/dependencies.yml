@@ -4,7 +4,7 @@ require:
     - play
 #    - play -> gae 1.6.0
 #    - play -> siena 2.0.7
-    - play -> jqvalidate 1.1  
+    - play -> jqvalidate 1.2
 
 repositories:
     - playModules:
@@ -15,13 +15,13 @@ repositories:
                 descriptor: "${application.path}/../../../[module]/conf/dependencies.yml"
                 artifact:   "${application.path}/../../../[module]"
                 contains:
-                    - play -> jqvalidate 1.1
+                    - play -> jqvalidate 1.2
             - playLocalModules2:
                 type:       local
                 descriptor: "${application.path}/../../../play-[module]/conf/dependencies.yml"
                 artifact:   "${application.path}/../../../play-[module]"
                 contains:
-                    - play -> jqvalidate 1.1
+                    - play -> jqvalidate 1.2
             - playContributedModules:
                 type:       http
                 descriptor: "http://www.playframework.org/modules/repo/[module]/[revision]/dependencies.yml"

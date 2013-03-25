@@ -76,7 +76,6 @@
         <exec executable="${play.path}/play${playExtension}" failonerror="true">
             <arg value="dependencies"/>
             <arg value="${testAppPath}"/>
-            <arg value="--debug"/>
         </exec>
     </target> 
     
