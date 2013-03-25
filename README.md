@@ -36,12 +36,12 @@ The `jqvalid.form` tag is identical to the built-in Play form tag except it outp
 
 ### Use the `jqvalid.field` tag in your view
 
-The `jqvalid.field` tag is identical to the built-in Play field tag except it puts an extra property on the field, `field.validationData`. You need to put this data in an HTML5 data attribute called `data-validate` on your `input`, `select`, or `textarea` element.  
+The `jqvalid.field` tag is identical to the built-in Play field tag except it puts an extra property on the field, `field.validationData`. You need to put this data (rules and messages) as attribute called on your `input`, `select`, or `textarea` element.  
 
     #{jqvalid.field 'task.details'}
 		<p>
 	  		<label>&{field.name}</label>
-	  		<input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+	  		<input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
 	  		<span class="error">${field.error}</span>
 		</p>
 	#{/}
@@ -97,63 +97,63 @@ The module currently supports the following annotations:
 	  	#{jqvalid.field 'task.details'}
 			<p>
 			  <label>&{field.name}</label>
-			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
 			  <span class="error">${field.error}</span>
 			</p>
 		#{/}
 		#{jqvalid.field 'task.priority'}
 			<p>
 			  <label>&{field.name}</label>
-			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
 			  <span class="error">${field.error}</span>
 			</p>
 		#{/}
 		#{jqvalid.field 'task.authorEmail'}
 			<p>
 			  <label>&{field.name}</label>
-			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
 			  <span class="error">${field.error}</span>
 			</p>
 		#{/}
 		#{jqvalid.field 'task.authorUrl'}
 			<p>
 			  <label>&{field.name}</label>
-			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
 			  <span class="error">${field.error}</span>
 			</p>
 		#{/}
 		#{jqvalid.field 'task.authorIPv4'}
 			<p>
 			  <label>&{field.name}</label>
-			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
 			  <label class="error">${field.error}</label>
 		</p>
 		#{/}
 		#{jqvalid.field 'task.authorIPv6'}
 			<p>
 			  <label>&{field.name}</label>
-			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
 			  <label class="error">${field.error}</label>
 			</p>
 		#{/}  
 		#{jqvalid.field 'task.authorPhone'}
 			<p>
 			  <label>&{field.name}</label>
-			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
 			  <label class="error">${field.error}</label>
 			</p>
 		#{/}	  
 		#{jqvalid.field 'task.countryAbbreviation'}
 			<p>
 			  <label>&{field.name}</label>
-			  <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
 			  <label class="error">${field.error}</label>
 			</p>
 		#{/} 
         #{jqvalid.field 'task.creditCardNumber'}
             <p>
               <label>&{field.name}</label>
-              <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+              <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
               <label class="error">${field.error}</label>
             </p>
         #{/jqvalid.field}
@@ -161,7 +161,7 @@ The module currently supports the following annotations:
         #{jqvalid.field 'task.color'}
             <p>
               <label>&{field.name}</label>
-              <input type="text" data-validate="${field.validationData}" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+              <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
               <label class="error">${field.error}</label>
             </p>
         #{/jqvalid.field}
