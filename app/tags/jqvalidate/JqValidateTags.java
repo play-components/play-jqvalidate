@@ -96,7 +96,8 @@ public class JqValidateTags extends FastTags {
     // ----------------------------
     Min min = f.getAnnotation(Min.class);
     if (min != null) {
-      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "min", new Double(min.value()).toString());
+      Integer value = (int) min.value();
+      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "min", value.toString());
       if (min.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "min", Messages.get(min.message(), null, min.value()));
       }
@@ -107,7 +108,8 @@ public class JqValidateTags extends FastTags {
     // ----------------------------
     Max max = f.getAnnotation(Max.class);
     if (max != null) {
-      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "max", new Double(max.value()).toString());
+      Integer value = (int) max.value();
+      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "max", value.toString());
       if (max.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "max", Messages.get(max.message(), null, max.value()));
       }
@@ -117,8 +119,10 @@ public class JqValidateTags extends FastTags {
     // ----------------------------
     Range range = f.getAnnotation(Range.class);
     if (range != null) {
-      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "range", "[" + new Double(range.min()).toString() + ", "
-          + new Double(range.max()).toString() + "]");
+      Integer valueMin = (int) range.min();
+      Integer valueMax = (int) range.max();
+      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "range", "[" + valueMin.toString() + ", " + valueMax.toString()
+          + "]");
       if (range.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "range",
             Messages.get(range.message(), null, range.min(), range.max()));
