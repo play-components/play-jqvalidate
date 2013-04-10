@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import data.validation.jqvalidate.HexColor;
+
 import play.data.validation.Email;
 import play.data.validation.IPv4Address;
 import play.data.validation.IPv6Address;
@@ -22,7 +24,6 @@ import play.data.validation.Range;
 import play.data.validation.Required;
 import play.data.validation.URL;
 import play.data.validation.Validation;
-import play.data.validation.jqvalidate.HexColor;
 import play.i18n.Messages;
 import play.mvc.Router.ActionDefinition;
 import play.mvc.Scope.Flash;

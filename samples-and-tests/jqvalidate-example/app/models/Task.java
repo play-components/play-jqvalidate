@@ -18,7 +18,7 @@ import play.data.validation.Range;
 import play.data.validation.Required;
 import play.data.validation.URL;
 import play.data.validation.Valid;
-import play.data.validation.jqvalidate.HexColor;
+import data.validation.jqvalidate.HexColor;
 
 import javax.persistence.*;
 

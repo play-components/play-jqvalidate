@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import play.data.validation.jqvalidate.HexColorCheck;
+import data.validation.jqvalidate.HexColorCheck;
 import play.test.UnitTest;
 
 public class HexColorCheckTest extends UnitTest {
