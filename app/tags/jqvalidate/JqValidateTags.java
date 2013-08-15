@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import data.validation.jqvalidate.HexColor;
-
 import play.data.validation.Email;
 import play.data.validation.IPv4Address;
 import play.data.validation.IPv6Address;
@@ -30,9 +28,15 @@ import play.mvc.Scope.Flash;
 import play.templates.FastTags;
 import play.templates.GroovyTemplate.ExecutableTemplate;
 import play.templates.JavaExtensions;
+import data.validation.jqvalidate.HexColor;
 
 @FastTags.Namespace("jqvalid")
 public class JqValidateTags extends FastTags {
+
+  public static class ValidationData {
+    public Map<String, String> rules = new HashMap<String, String>();
+    public Map<String, String> messages = new HashMap<String, String>();
+  }
 
   private static final String RULE_ATTRIBUTE_PREFIX = "data-rule-";
   private static final String MESSAGE_ATTRIBUTE_PREFIX = "data-msg-";
@@ -79,7 +83,7 @@ public class JqValidateTags extends FastTags {
   }
 
   private static ValidationData buildValidationData(Field f) throws Exception {
-    ValidationData validationData = (new JqValidateTags()).new ValidationData();
+    JqValidateTags.ValidationData validationData = new JqValidateTags.ValidationData();
 
     // ----------------------------
     // Required
@@ -134,7 +138,7 @@ public class JqValidateTags extends FastTags {
     // ----------------------------
     MaxSize maxSize = f.getAnnotation(MaxSize.class);
     if (maxSize != null) {
-      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "maxlength", new Integer(maxSize.value()).toString());
+      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "maxlength", Integer.toString(maxSize.value()));
       if (maxSize.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "maxlength",
             Messages.get(maxSize.message(), null, maxSize.value()));
@@ -145,7 +149,7 @@ public class JqValidateTags extends FastTags {
     // ----------------------------
     MinSize minSize = f.getAnnotation(MinSize.class);
     if (minSize != null) {
-      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "minlength", new Integer(minSize.value()).toString());
+      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "minlength", Integer.toString(minSize.value()));
       if (minSize.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "minlength",
             Messages.get(minSize.message(), null, minSize.value()));
@@ -322,10 +326,4 @@ public class JqValidateTags extends FastTags {
     body.setProperty("field", field);
     body.call();
   }
-
-  public class ValidationData {
-    Map<String, String> rules = new HashMap<String, String>();
-    Map<String, String> messages = new HashMap<String, String>();
-  }
-
 }

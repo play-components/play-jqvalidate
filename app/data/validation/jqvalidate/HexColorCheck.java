@@ -18,22 +18,23 @@ import net.sf.oval.exception.OValException;
  */
 public class HexColorCheck extends AbstractAnnotationCheck<HexColor> {
 
-	final static String mes = "validation.hexcolor";
-	private static final String HEX_PATTERN = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
-	private static final Pattern pattern = Pattern.compile(HEX_PATTERN);
-	
-	@Override
+    final static String mes = "validation.hexcolor";
+    private static final String HEX_PATTERN = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
+    private static final Pattern pattern = Pattern.compile(HEX_PATTERN);
+
+    @Override
     public void configure(HexColor hexColor) {
-        setMessage(hexColor.message());
+	setMessage(hexColor.message());
     }
-	
-	@Override
-	public boolean isSatisfied(Object validatedObject, Object value, OValContext context, Validator validator) throws OValException {
-		if (value == null || value.toString().length() == 0) {
-	            return true;
-	    }
-		Matcher matcher = pattern.matcher(value.toString());
-		return matcher.matches();
+
+    @Override
+    public boolean isSatisfied(Object validatedObject, Object value,
+	    OValContext context, Validator validator) throws OValException {
+	if (value == null || value.toString().length() == 0) {
+	    return true;
 	}
+	Matcher matcher = pattern.matcher(value.toString());
+	return matcher.matches();
+    }
 
 }
