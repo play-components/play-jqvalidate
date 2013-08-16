@@ -5,6 +5,7 @@ import groovy.lang.Closure;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -29,6 +30,7 @@ import play.templates.FastTags;
 import play.templates.GroovyTemplate.ExecutableTemplate;
 import play.templates.JavaExtensions;
 import data.validation.jqvalidate.HexColor;
+import data.validation.jqvalidate.JqValidate;
 
 @FastTags.Namespace("jqvalid")
 public class JqValidateTags extends FastTags {
@@ -82,14 +84,28 @@ public class JqValidateTags extends FastTags {
     out.println("</form>");
   }
 
-  private static ValidationData buildValidationData(Field f) throws Exception {
+    /**
+     * Build the validation data need for the jquery validation plugin
+     * 
+     * @param f
+     *            : field
+     * @return validation data
+     * @throws Exception
+     */
+private static ValidationData buildValidationData(Field f) throws Exception {
     JqValidateTags.ValidationData validationData = new JqValidateTags.ValidationData();
-
+    if(f == null){
+	return validationData;
+    }
+    
+    JqValidate jqValidate = f.getAnnotation(JqValidate.class);
+    
+    
     // ----------------------------
     // Required
     // ----------------------------
     Required required = f.getAnnotation(Required.class);
-    if (required != null) {
+    if (required != null && isRuleAllowed(jqValidate, Required.class)) {
       validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "required", "true");
       if (required.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "required", Messages.get(required.message()));
@@ -100,7 +116,7 @@ public class JqValidateTags extends FastTags {
     // Min
     // ----------------------------
     Min min = f.getAnnotation(Min.class);
-    if (min != null) {
+    if (min != null && isRuleAllowed(jqValidate, Min.class)) {
       Integer value = (int) min.value();
       validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "min", value.toString());
       if (min.message() != null) {
@@ -112,7 +128,7 @@ public class JqValidateTags extends FastTags {
     // Max
     // ----------------------------
     Max max = f.getAnnotation(Max.class);
-    if (max != null) {
+    if (max != null && isRuleAllowed(jqValidate, Max.class)) {
       Integer value = (int) max.value();
       validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "max", value.toString());
       if (max.message() != null) {
@@ -123,7 +139,7 @@ public class JqValidateTags extends FastTags {
     // Range
     // ----------------------------
     Range range = f.getAnnotation(Range.class);
-    if (range != null) {
+    if (range != null && isRuleAllowed(jqValidate, Range.class)) {
       Integer valueMin = (int) range.min();
       Integer valueMax = (int) range.max();
       validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "range", "[" + valueMin.toString() + ", " + valueMax.toString()
@@ -137,7 +153,7 @@ public class JqValidateTags extends FastTags {
     // MaxSize
     // ----------------------------
     MaxSize maxSize = f.getAnnotation(MaxSize.class);
-    if (maxSize != null) {
+    if (maxSize != null && isRuleAllowed(jqValidate, MaxSize.class)) {
       validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "maxlength", Integer.toString(maxSize.value()));
       if (maxSize.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "maxlength",
@@ -148,7 +164,7 @@ public class JqValidateTags extends FastTags {
     // MinSize
     // ----------------------------
     MinSize minSize = f.getAnnotation(MinSize.class);
-    if (minSize != null) {
+    if (minSize != null && isRuleAllowed(jqValidate, MinSize.class)) {
       validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "minlength", Integer.toString(minSize.value()));
       if (minSize.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "minlength",
@@ -160,7 +176,7 @@ public class JqValidateTags extends FastTags {
     // URL
     // ----------------------------
     URL url = f.getAnnotation(URL.class);
-    if (url != null) {
+    if (url != null && isRuleAllowed(jqValidate, URL.class)) {
       validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "url", "true");
       if (url.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "url", Messages.get(url.message()));
@@ -171,7 +187,7 @@ public class JqValidateTags extends FastTags {
     // Email
     // ----------------------------
     Email email = f.getAnnotation(Email.class);
-    if (email != null) {
+    if (email != null && isRuleAllowed(jqValidate, Email.class)) {
       validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "email", "true");
       if (email.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "email", Messages.get(email.message()));
@@ -182,7 +198,7 @@ public class JqValidateTags extends FastTags {
     // IPv4Address
     // ----------------------------
     IPv4Address ipv4Address = f.getAnnotation(IPv4Address.class);
-    if (ipv4Address != null) {
+    if (ipv4Address != null && isRuleAllowed(jqValidate, IPv4Address.class)) {
       validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "ipv4", "true");
       if (ipv4Address.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "ipv4", Messages.get(ipv4Address.message()));
@@ -193,7 +209,7 @@ public class JqValidateTags extends FastTags {
     // IPv6Address
     // ----------------------------
     IPv6Address ipv6Address = f.getAnnotation(IPv6Address.class);
-    if (ipv6Address != null) {
+    if (ipv6Address != null && isRuleAllowed(jqValidate, IPv6Address.class)) {
       validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "ipv6", "true");
       if (ipv6Address.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "ipv6", Messages.get(ipv6Address.message()));
@@ -204,7 +220,7 @@ public class JqValidateTags extends FastTags {
     // Match
     // ----------------------------
     Match match = f.getAnnotation(Match.class);
-    if (match != null) {
+    if (match != null && isRuleAllowed(jqValidate, Match.class)) {
       String rule = match.value();
       if (!rule.startsWith("^")) {
         rule = "^" + rule;
@@ -225,7 +241,7 @@ public class JqValidateTags extends FastTags {
     // ----------------------------
     Phone phone = f.getAnnotation(Phone.class);
     // Match must not be defined
-    if (phone != null && match == null) {
+    if (phone != null && match == null && isRuleAllowed(jqValidate, Phone.class)) {
       validationData.rules
           .put(RULE_ATTRIBUTE_PREFIX + "pattern",
               "^([\\+][0-9]{1,3}([ \\.\\-]))?([\\(]{1}[0-9]{2,6}[\\)])?([0-9 \\.\\-/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$");
@@ -239,7 +255,7 @@ public class JqValidateTags extends FastTags {
     // ----------------------------
     HexColor hexColor = f.getAnnotation(HexColor.class);
     // Match must not be defined
-    if (hexColor != null && match == null) {
+    if (hexColor != null && match == null && isRuleAllowed(jqValidate, HexColor.class)) {
       validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "pattern", "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
       if (hexColor.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "pattern", Messages.get(hexColor.message()));
@@ -249,7 +265,35 @@ public class JqValidateTags extends FastTags {
     return validationData;
   }
 
-  public static void buildValidationDataString(ValidationData validationData) {
+    /**
+     * Test if the rule must be applied. <br>
+     * The rule will be applied if:
+     * <ul>
+     * <li>The tag is not defined (all rules will be applied this way we keep
+     * the compatibility with the previous versions)</li>
+     * <li>The rules is in the allowed list</li>
+     * <li>The rules is not in the forbidden list</li>
+     * </ul>
+     * 
+     * @param jqValidate
+     *            : the jqvalidate annotation of the field
+     * @param dataValidationClass
+     *            : the rule to check if it must be applied
+     * @return
+     */
+    private static boolean isRuleAllowed(JqValidate jqValidate, Class<?> dataValidationClass) {
+        // if the tag is not defined, all rules will be applied
+        // this way we keep the compatibility with the previous versions
+        // if the rules is in the allowed list => rule is allowed<br>
+        // if the rules is not in the forbidden list => rule is allowed<br>
+        if (jqValidate == null || Arrays.asList(jqValidate.allowedRules()).contains(dataValidationClass)
+                || !Arrays.asList(jqValidate.forbiddenRules()).contains(dataValidationClass)) {
+            return true;
+        }
+        return false;
+    }
+
+public static void buildValidationDataString(ValidationData validationData) {
     StringBuilder result = new StringBuilder("");
     if (validationData.rules.size() > 0) {
       boolean first = true;

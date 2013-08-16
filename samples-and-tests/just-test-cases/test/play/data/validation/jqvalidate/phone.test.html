@@ -1,0 +1,51 @@
+#{selenium 'Phone field'}
+    open('/')
+    assertTitle('')
+    type('id=task_authorPhone','(305) 613 09 58 ext 10100')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorphone"]/label[2]','Not a valid phone')
+
+    type('id=task_authorPhone','(3052552) 613 09 58 ext 101')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorphone"]/label[2]','Not a valid phone')
+    
+    type('id=task_authorPhone','(305) 613 d09 58 ext 101')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorphone"]/label[2]','Not a valid phone')
+    
+    type('id=task_authorPhone','+86 (10)694454640055551555555')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorphone"]/label[2]','Not a valid phone')
+    
+    type('id=task_authorPhone','+86 (10)6944546400d')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorphone"]/label[2]','Not a valid phone')
+    
+    type('id=task_authorPhone','+86 (10ddd)69445464')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorphone"]/label[2]','Not a valid phone')
+    
+     
+    type('id=task_authorPhone','(305) 613 09 58 ext 101')
+    assertTextNotPresent('//p[@id="task-authorphone"]/label[2]','Not a valid phone')
+    
+    type('id=task_authorPhone','+33 1 47 37 62 24 x3')
+     assertTextNotPresent('//p[@id="task-authorphone"]/label[2]','Not a valid phone')
+     
+    type('id=task_authorPhone','+49-4312 / 777 777')
+    assertTextNotPresent('//p[@id="task-authorphone"]/label[2]','Not a valid phone')
+    
+    type('id=task_authorPhone','+86 (10)69445464')
+    assertTextNotPresent('//p[@id="task-authorphone"]/label[2]','Not a valid phone')
+    
+    type('id=task_authorPhone','(020) 1234 1234')
+    assertTextNotPresent('//p[@id="task-authorphone"]/label[2]','Not a valid phone')
+        
+    type('id=task_priority','8')
+    type('id=task_details','details')
+    type('id=task_authorEmail','test@test.com')
+    type('id=task_authorUrl','http://www.test/com')
+    clickAndWait('css=input[type="submit"]')
+    waitForTextPresent('', ".Data OK.")
+    assertTextPresent('','.Data OK.')
+#{/selenium}

@@ -1,0 +1,42 @@
+#{selenium 'Hex color field'}
+    open('/')
+    assertTitle('')
+    type('id=task_color','FFF')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-color"]/label[2]','Must be a valid a valid HTML color code')
+
+    type('id=task_color','012345')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-color"]/label[2]','Must be a valid a valid HTML color code')
+    
+    type('id=task_color','#0123456')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-color"]/label[2]','Must be a valid a valid HTML color code')
+    
+    type('id=task_color','#FFR')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-color"]/label[2]','Must be a valid a valid HTML color code')
+    
+    type('id=task_color','#0000FG')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-color"]/label[2]','Must be a valid a valid HTML color code')
+    
+    type('id=task_color','#0000F*')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-color"]/label[2]','Must be a valid a valid HTML color code')
+    
+    type('id=task_color','#fff')
+    assertTextNotPresent('//p[@id="task-color"]/label[2]','Must be a valid a valid HTML color code')
+      
+    type('id=task_color','#ffffff')
+    assertTextNotPresent('//p[@id="task-color"]/label[2]','Must be a valid a valid HTML color code')
+     
+        
+    type('id=task_priority','8')
+    type('id=task_details','details')
+    type('id=task_authorEmail','test@test.com')
+    type('id=task_authorUrl','http://www.test/com')
+    clickAndWait('css=input[type="submit"]')
+    waitForTextPresent('', ".Data OK.")
+    assertTextPresent('','.Data OK.')
+#{/selenium}

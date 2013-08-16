@@ -12,6 +12,8 @@ before_script:
   - unzip -q play-${PLAY_VERSION}.zip
 script: 
   - ant test -Dplay.path=play-${PLAY_VERSION}
+after_failure: 
+    cat ./samples-and-tests/just-test-cases/test-result/*.failed.html
 notifications:
   email:
     on_success: change

@@ -1,0 +1,18 @@
+#{selenium 'Range field'}
+    open('/')
+    assertTitle('')
+    type('id=task_priority','0')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-priority"]/label[2]','Not in the range 1 through 10')
+    type('id=task_priority','11')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-priority"]/label[2]','Not in the range 1 through 10')
+    type('id=task_priority','8')
+
+    type('id=task_details','details')
+    type('id=task_authorEmail','test@test.com')
+    type('id=task_authorUrl','http://www.test/com')
+    clickAndWait('css=input[type="submit"]')
+    waitForTextPresent('', ".Data OK.")
+    assertTextPresent('','.Data OK.')
+#{/selenium}

@@ -1,0 +1,37 @@
+#{selenium 'Pattern field'}
+    open('/')
+    assertTitle('')
+    type('id=task_countryAbbreviation','1df')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-countryabbreviation"]/label[2]','Must match [A-Z]{3}')
+
+    type('id=task_countryAbbreviation','FRANCE')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-countryabbreviation"]/label[2]','Must match [A-Z]{3}')
+    
+    type('id=task_countryAbbreviation','.FR')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-countryabbreviation"]/label[2]','Must match [A-Z]{3}')
+    
+    type('id=task_countryAbbreviation','fra')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-countryabbreviation"]/label[2]','Must match [A-Z]{3}')
+    
+    type('id=task_countryAbbreviation','france')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-countryabbreviation"]/label[2]','Must match [A-Z]{3}')
+    
+    type('id=task_countryAbbreviation','/FR')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-countryabbreviation"]/label[2]','Must match [A-Z]{3}')
+    
+    type('id=task_countryAbbreviation','FRA')
+        
+    type('id=task_priority','8')
+    type('id=task_details','details')
+    type('id=task_authorEmail','test@test.com')
+    type('id=task_authorUrl','http://www.test/com')
+    clickAndWait('css=input[type="submit"]')
+    waitForTextPresent('', ".Data OK.")
+    assertTextPresent('','.Data OK.')
+#{/selenium}

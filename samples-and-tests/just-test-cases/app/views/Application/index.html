@@ -1,4 +1,95 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
 
-<h2>JQValidate just test cases</h2>
+#{jqvalidate.javascripts tagValue:'moreScripts', additionalMethods:true, defaultComponent:true /}
+
+<h1>Play! JQuery Form Validation Example</h1>
+
+#{if flash.error || flash.success}
+<div id="msg-area" class="alert-box #{if flash.error}alert#{/if}#{else}success#{/else}">
+${flash.error}${flash.success}
+</div>
+#{/if}
+
+<fieldset>
+<legend>Create a task</legend>
+#{jqvalid.form @Application.save()}
+  	#{jqvalid.field 'task.details'}
+		<p id="${field.name.slugify()}">
+		  <label>&{field.name}</label>     
+		  <textarea ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" class="${field.errorClass}">${field.value}</textarea>
+		  <label class="error">${field.error}</label>
+		</p>
+	#{/}
+	#{jqvalid.field 'task.priority'}
+		<p id="${field.name.slugify()}">
+		  <label>&{field.name}</label>
+		  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+		  <label class="error">${field.error}</label>
+		</p>
+	#{/}
+	#{jqvalid.field 'task.authorEmail'}
+		<p id="${field.name.slugify()}">
+		  <label>&{field.name}</label>
+		  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+		  <label class="error">${field.error}</label>
+		</p>
+	#{/}
+	#{jqvalid.field 'task.authorUrl'}
+		<p id="${field.name.slugify()}">
+		  <label>&{field.name}</label>
+		  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+		  <label class="error">${field.error}</label>
+		</p>
+	#{/}
+	#{jqvalid.field 'task.authorIPv4'}
+		<p id="${field.name.slugify()}">
+		  <label>&{field.name}</label>
+		  <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+		  <label class="error">${field.error}</label>
+		</p>
+	#{/}
+  #{jqvalid.field 'task.authorIPv6'}
+		<p id="${field.name.slugify()}">
+      <label>&{field.name}</label>
+      <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+      <label class="error">${field.error}</label>
+    </p>
+  #{/}
+  
+  #{jqvalid.field 'task.authorPhone'}
+	<p id="${field.name.slugify()}">
+      <label>&{field.name}</label>
+      <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+      <label class="error">${field.error}</label>
+    </p>
+  #{/}
+  
+   #{jqvalid.field 'task.countryAbbreviation'}
+	<p id="${field.name.slugify()}">
+      <label>&{field.name}</label>
+      <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+      <label class="error">${field.error}</label>
+    </p>
+  #{/}
+  
+   #{jqvalid.field 'task.creditCardNumber'}
+	<p id="${field.name.slugify()}">
+      <label>&{field.name}</label>
+      <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+      <label class="error">${field.error}</label>
+    </p>
+  #{/jqvalid.field}
+  
+  #{jqvalid.field 'task.color'}
+	<p id="${field.name.slugify()}">
+      <label>&{field.name}</label>
+      <input type="text" ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+      <label class="error">${field.error}</label>
+    </p>
+  #{/jqvalid.field}
+
+	<p>
+		<input type="submit" value='Create Task'>
+	</p>
+#{/jqvalid.form}
+</fieldset>

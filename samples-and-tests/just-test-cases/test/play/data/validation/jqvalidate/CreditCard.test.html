@@ -1,0 +1,37 @@
+#{selenium 'Credit card field'}
+    open('/')
+    assertTitle('')
+    type('id=task_creditCardNumber','012345678')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+
+    type('id=task_creditCardNumber','01234567891234567890')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+    
+    type('id=task_creditCardNumber','a012345678912456')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+    
+    type('id=task_creditCardNumber','0123-4567-8912-456')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+    
+    type('id=task_creditCardNumber','0123/4567/8912/456')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+    
+    type('id=task_creditCardNumber','012345678912456*')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+    
+    type('id=task_creditCardNumber','012345678912456')
+        
+    type('id=task_priority','8')
+    type('id=task_details','details')
+    type('id=task_authorEmail','test@test.com')
+    type('id=task_authorUrl','http://www.test/com')
+    clickAndWait('css=input[type="submit"]')
+    waitForTextPresent('', ".Data OK.")
+    assertTextPresent('','.Data OK.')
+#{/selenium}
