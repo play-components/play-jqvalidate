@@ -1,0 +1,37 @@
+#{selenium 'IP address V4 field'}
+    open('/')
+    assertTitle('')
+    type('id=task_authorIPv4','125.255.255.2500')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv4"]/label[2]','Not a valid IP address')
+
+    type('id=task_authorIPv4','1205.255.255.050')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv4"]/label[2]','Not a valid IP address')
+    
+    type('id=task_authorIPv4','125.2505.255.050')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv4"]/label[2]','Not a valid IP address')
+    
+    type('id=task_authorIPv4','120.255.2505.050')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv4"]/label[2]','Not a valid IP address')
+    
+    type('id=task_authorIPv4','256.255.205.050')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv4"]/label[2]','Not a valid IP address')
+    
+    type('id=task_authorIPv4','256.2 5.205.050')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv4"]/label[2]','Not a valid IP address')
+    
+    type('id=task_authorIPv4','255.255.205.050')
+        
+    type('id=task_priority','8')
+    type('id=task_details','details')
+    type('id=task_authorEmail','test@test.com')
+    type('id=task_authorUrl','http://www.test/com')
+    clickAndWait('css=input[type="submit"]')
+    waitForTextPresent('', ".Data OK.")
+    assertTextPresent('','.Data OK.')
+#{/selenium}

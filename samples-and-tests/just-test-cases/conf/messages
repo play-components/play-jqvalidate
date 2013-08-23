@@ -1,3 +1,13 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
+task.details=Details
+task.priority=Priority
+task.authorEmail=Your Email
+task.authorUrl=Related URL
+task.authorIPv4=Your IP (V4 format)
+task.authorIPv6=Your IP (V6 format)
+task.authorPhone=Phone
+task.countryAbbreviation=Country abbreviation
+task.creditCardNumber=Credit card number
+task.color=Hex color(#RRGGBB or #RGB)

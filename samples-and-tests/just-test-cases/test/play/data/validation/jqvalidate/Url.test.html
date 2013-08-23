@@ -1,0 +1,35 @@
+#{selenium 'URL field'}
+    open('/')
+    assertTitle('')
+    type('id=task_authorUrl','hhttp://www.test/com')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorurl"]/label[2]','Not a valid URL')
+
+    type('id=task_authorUrl','http:')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorurl"]/label[2]','Not a valid URL')
+    
+    type('id=task_authorUrl','http://')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorurl"]/label[2]','Not a valid URL')
+    
+    type('id=task_authorUrl','www.test/com')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorurl"]/label[2]','Not a valid URL')
+    
+    type('id=task_authorUrl','http://www')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorurl"]/label[2]','Not a valid URL')
+    
+    type('id=task_authorUrl','http://w ww.test.com)
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authorurl"]/label[2]','Not a valid URL')
+    
+    type('id=task_priority','8')
+    type('id=task_details','details')
+    type('id=task_authorEmail','test@test.com')
+    type('id=task_authorUrl','http://www.test/com')
+    clickAndWait('css=input[type="submit"]')
+    waitForTextPresent('', ".Data OK.")
+    assertTextPresent('','.Data OK.')
+#{/selenium}

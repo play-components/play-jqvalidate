@@ -1,0 +1,37 @@
+#{selenium 'IP address V6 field'}
+    open('/')
+    assertTitle('')
+    type('id=task_authorIPv6','2001:0db8:85a3:0000:0000:8a2e:0370')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv6"]/label[2]','Not a valid IP v6 address')
+
+    type('id=task_authorIPv6','2001:0db8:::0000:8a2e:0370:7334')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv6"]/label[2]','Not a valid IP v6 address')
+    
+    type('id=task_authorIPv6','2001:0db8:85a3:0000:0000:8a2e:0370:73340')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv6"]/label[2]','Not a valid IP v6 address')
+    
+    type('id=task_authorIPv6','20010:0db8:85a3:0000:0000:8a2e:0370:7334')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv6"]/label[2]','Not a valid IP v6 address')
+    
+    type('id=task_authorIPv6','zzzz:0db8:85a3:0000:0000:8a2e:0370:7334')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv6"]/label[2]','Not a valid IP v6 address')
+    
+    type('id=task_authorIPv6','ghij:0db8:85a3:0000:0000:8a2e:0370:7334')
+    click('css=input[type="submit"]') 
+    assertText('//p[@id="task-authoripv6"]/label[2]','Not a valid IP v6 address')
+    
+    type('id=task_authorIPv6','2001:0db8:85a3:ffff:0000:8a2e:0370:7334')
+        
+    type('id=task_priority','8')
+    type('id=task_details','details')
+    type('id=task_authorEmail','test@test.com')
+    type('id=task_authorUrl','http://www.test/com')
+    clickAndWait('css=input[type="submit"]')
+    waitForTextPresent('', ".Data OK.")
+    assertTextPresent('','.Data OK.')
+#{/selenium}

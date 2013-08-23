@@ -1,0 +1,27 @@
+#{selenium 'Required field'}
+    open('Application/annotationJqValidate')
+    assertTitle('')
+    type('id=task_noValidation','')
+    click('css=input[type="submit"]') 
+    assertTextNotPresent('//p[@id="task-novalidation"]/label[2]','Required')
+    assertTextNotPresent('//p[@id="task-novalidation"]/label[2]','Must match [A-Z]{3}')
+    assertTextNotPresent('//p[@id="task-novalidation"]/label[2]','Invalid email address')
+              
+    type('id=task_requiredValidation','')
+    click('css=input[type="submit"]') 
+    
+    waitForVisible('//p[@id="task-requiredvalidation"]/label[2]')  
+    assertText('//p[@id="task-requiredvalidation"]/label[2]','Required')
+
+    assertTextNotPresent('//p[@id="task-requiredvalidation"]/label[2]','Must match [A-Z]{3}')
+    assertTextNotPresent('//p[@id="task-requiredvalidation"]/label[2]','Invalid email address')
+
+    type('id=task_requiredValidation','required validation')
+    clickAndWait('css=input[type="submit"]')
+    waitForTextPresent('', ".Data KO.")
+    assertTextPresent('','.Data KO.')
+    
+    assertText('//p[@id="task-novalidation"]/label[2]','Required')
+    assertText('//p[@id="task-requiredvalidation"]/label[2]','Must match [A-Z]{3}')
+    
+#{/selenium}

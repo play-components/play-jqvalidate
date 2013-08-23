@@ -1,14 +1,20 @@
 language: java
 jdk:
-  - oraclejdk6
   - oraclejdk7
-  - openjdk6
   - openjdk7
+  - openjdk6
 env:
-  - PLAY_VERSION=1.2.5
+  - PLAY_VERSION=1.2.5 PLAY_DOWNLOAD=http://downloads.typesafe.com/releases/play-1.2.5.zip
+  - PLAY_VERSION=1.2.5.1 PLAY_DOWNLOAD=http://downloads.typesafe.com/play/1.2.5.1/play-1.2.5.1.zip
+  - PLAY_VERSION=1.2.6 PLAY_DOWNLOAD=http://downloads.typesafe.com/play/1.2.6/play-1.2.6.zip
 before_script:
-  - wget http://download.playframework.org/releases/play-${PLAY_VERSION}.zip
+  - wget ${PLAY_DOWNLOAD}
   - unzip -q play-${PLAY_VERSION}.zip
-script: ant test -Dplay.path=play-${PLAY_VERSION}
+script: 
+  - ant test -Dplay.path=play-${PLAY_VERSION}
+after_failure: 
+    cat ./samples-and-tests/just-test-cases/test-result/*.failed.html
 notifications:
-  email: false
+  email:
+    on_success: change
+    on_failure: always

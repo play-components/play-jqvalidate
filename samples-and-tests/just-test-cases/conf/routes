@@ -2,8 +2,12 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+# Module
+*      /                                        module:jqvalidate
+
 # Home page
 GET     /                                       Application.index
+POST    /                                       Application.save
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
