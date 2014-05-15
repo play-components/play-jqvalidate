@@ -2,7 +2,7 @@
 
 require:
     - play
-    - play -> jqvalidate 1.3
+    - play -> jqvalidate 1.4
 
 repositories:
     - playModules:

@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import play.Play;
 import play.data.validation.Email;
 import play.data.validation.IPv4Address;
 import play.data.validation.IPv6Address;
@@ -42,6 +43,7 @@ public class JqValidateTags extends FastTags {
 
   private static final String RULE_ATTRIBUTE_PREFIX = "data-rule-";
   private static final String MESSAGE_ATTRIBUTE_PREFIX = "data-msg-";
+  public static String ERROR_CLASS = Play.configuration.getProperty("jqvalidate.error.class", "hasError");
 
   public static void _form(Map<?, ?> args, Closure body, PrintWriter out, ExecutableTemplate template, int fromLine) {
     ActionDefinition actionDef = (ActionDefinition) args.get("arg");
@@ -84,23 +86,22 @@ public class JqValidateTags extends FastTags {
     out.println("</form>");
   }
 
-    /**
-     * Build the validation data need for the jquery validation plugin
-     * 
-     * @param f
-     *            : field
-     * @return validation data
-     * @throws Exception
-     */
-private static ValidationData buildValidationData(Field f) throws Exception {
+  /**
+   * Build the validation data need for the jquery validation plugin
+   * 
+   * @param f
+   *          : field
+   * @return validation data
+   * @throws Exception
+   */
+  private static ValidationData buildValidationData(Field f) throws Exception {
     JqValidateTags.ValidationData validationData = new JqValidateTags.ValidationData();
-    if(f == null){
-	return validationData;
+    if (f == null) {
+      return validationData;
     }
-    
+
     JqValidate jqValidate = f.getAnnotation(JqValidate.class);
-    
-    
+
     // ----------------------------
     // Required
     // ----------------------------
@@ -265,35 +266,35 @@ private static ValidationData buildValidationData(Field f) throws Exception {
     return validationData;
   }
 
-    /**
-     * Test if the rule must be applied. <br>
-     * The rule will be applied if:
-     * <ul>
-     * <li>The tag is not defined (all rules will be applied this way we keep
-     * the compatibility with the previous versions)</li>
-     * <li>The rules is in the allowed list</li>
-     * <li>The rules is not in the forbidden list</li>
-     * </ul>
-     * 
-     * @param jqValidate
-     *            : the jqvalidate annotation of the field
-     * @param dataValidationClass
-     *            : the rule to check if it must be applied
-     * @return
-     */
-    private static boolean isRuleAllowed(JqValidate jqValidate, Class<?> dataValidationClass) {
-        // if the tag is not defined, all rules will be applied
-        // this way we keep the compatibility with the previous versions
-        // if the rules is in the allowed list => rule is allowed<br>
-        // if the rules is not in the forbidden list => rule is allowed<br>
-        if (jqValidate == null || Arrays.asList(jqValidate.allowedRules()).contains(dataValidationClass)
-                || !Arrays.asList(jqValidate.forbiddenRules()).contains(dataValidationClass)) {
-            return true;
-        }
-        return false;
+  /**
+   * Test if the rule must be applied. <br>
+   * The rule will be applied if:
+   * <ul>
+   * <li>The tag is not defined (all rules will be applied this way we keep the
+   * compatibility with the previous versions)</li>
+   * <li>The rules is in the allowed list</li>
+   * <li>The rules is not in the forbidden list</li>
+   * </ul>
+   * 
+   * @param jqValidate
+   *          : the jqvalidate annotation of the field
+   * @param dataValidationClass
+   *          : the rule to check if it must be applied
+   * @return
+   */
+  private static boolean isRuleAllowed(JqValidate jqValidate, Class<?> dataValidationClass) {
+    // if the tag is not defined, all rules will be applied
+    // this way we keep the compatibility with the previous versions
+    // if the rules is in the allowed list => rule is allowed<br>
+    // if the rules is not in the forbidden list => rule is allowed<br>
+    if (jqValidate == null || Arrays.asList(jqValidate.allowedRules()).contains(dataValidationClass)
+        || !Arrays.asList(jqValidate.forbiddenRules()).contains(dataValidationClass)) {
+      return true;
     }
+    return false;
+  }
 
-public static void buildValidationDataString(ValidationData validationData) {
+  public static void buildValidationDataString(ValidationData validationData) {
     StringBuilder result = new StringBuilder("");
     if (validationData.rules.size() > 0) {
       boolean first = true;
@@ -338,7 +339,7 @@ public static void buildValidationDataString(ValidationData validationData) {
     field.put("flashArray", field.get("flash") != null && !field.get("flash").toString().isEmpty() ? field.get("flash")
         .toString().split(",") : new String[0]);
     field.put("error", Validation.error(_arg));
-    field.put("errorClass", field.get("error") != null ? "hasError" : "");
+    field.put("errorClass", field.get("error") != null ? ERROR_CLASS : "");
 
     String[] pieces = _arg.split("\\.");
     Object obj = body.getProperty(pieces[0]);
