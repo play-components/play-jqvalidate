@@ -4,7 +4,7 @@ require:
     - play
     - play -> gae 1.6.0
     - play -> siena 2.0.7
-    - play -> jqvalidate 1.3
+    - play -> jqvalidate 1.4
 
 repositories:
     - playModules:
