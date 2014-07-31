@@ -1,6 +1,6 @@
 #{selenium 'Required field'}
     open('/')
-    assertTitle('')
+    assertTitle('Play! JQuery Form Validation Example')
     type('id=task_priority','')
     click('css=input[type="submit"]') 
     waitForVisible('//p[@id="task-details"]/label[2]')  

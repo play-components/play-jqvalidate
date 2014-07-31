@@ -1,6 +1,6 @@
 #{selenium 'Hex color field'}
     open('/')
-    assertTitle('')
+    assertTitle('Play! JQuery Form Validation Example')
     type('id=task_color','FFF')
     click('css=input[type="submit"]') 
     assertText('//p[@id="task-color"]/label[2]','Must be a valid a valid HTML color code')

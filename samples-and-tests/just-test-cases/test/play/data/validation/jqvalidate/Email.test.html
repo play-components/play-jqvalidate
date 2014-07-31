@@ -1,6 +1,6 @@
 #{selenium 'Email field'}
     open('/')
-    assertTitle('')
+    assertTitle('Play! JQuery Form Validation Example')
     type('id=task_authorEmail','test')
     click('css=input[type="submit"]')
     waitForTextPresent('', 'Invalid email address') 

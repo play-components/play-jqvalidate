@@ -1,6 +1,6 @@
 #{selenium 'Pattern field'}
     open('/')
-    assertTitle('')
+    assertTitle('Play! JQuery Form Validation Example')
     type('id=task_countryAbbreviation','1df')
     click('css=input[type="submit"]') 
     assertText('//p[@id="task-countryabbreviation"]/label[2]','Must match [A-Z]{3}')

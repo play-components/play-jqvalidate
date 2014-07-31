@@ -1,6 +1,6 @@
 #{selenium 'Phone field'}
     open('/')
-    assertTitle('')
+    assertTitle('Play! JQuery Form Validation Example')
     type('id=task_authorPhone','(305) 613 09 58 ext 10100')
     click('css=input[type="submit"]') 
     assertText('//p[@id="task-authorphone"]/label[2]','Not a valid phone')

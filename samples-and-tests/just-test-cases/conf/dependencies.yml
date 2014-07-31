@@ -2,7 +2,7 @@
 
 require:
     - play
-    - play -> jqvalidate 1.4
+    - play -> jqvalidate latest.integration
 
 repositories:
     - playModules:
@@ -13,13 +13,13 @@ repositories:
                 descriptor: "${application.path}/../../../[module]/conf/dependencies.yml"
                 artifact:   "${application.path}/../../../[module]"
                 contains:
-                    - play -> jqvalidate 1.2
+                    - play -> jqvalidate *
             - playLocalModules2:
                 type:       local
                 descriptor: "${application.path}/../../../play-[module]/conf/dependencies.yml"
                 artifact:   "${application.path}/../../../play-[module]"
                 contains:
-                    - play -> jqvalidate 1.2
+                    - play -> jqvalidate *
             - playContributedModules:
                 type:       http
                 descriptor: "http://www.playframework.org/modules/repo/[module]/[revision]/dependencies.yml"

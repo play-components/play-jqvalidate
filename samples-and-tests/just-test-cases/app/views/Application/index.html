@@ -2,7 +2,8 @@
 
 #{jqvalidate.javascripts tagValue:'moreScripts', additionalMethods:true, defaultComponent:true /}
 
-<h1>Play! JQuery Form Validation Example</h1>
+#{set 'title' }&{'home.title'}#{/set}
+<h1>#{get 'title' /}</h1>
 
 #{if flash.error || flash.success}
 <div id="msg-area" class="alert-box #{if flash.error}alert#{/if}#{else}success#{/else}">

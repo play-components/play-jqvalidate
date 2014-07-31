@@ -11,3 +11,13 @@ task.authorPhone=Phone
 task.countryAbbreviation=Country abbreviation
 task.creditCardNumber=Credit card number
 task.color=Hex color(#RRGGBB or #RGB)
+
+element.novalidation=element.novalidation
+element.requiredValidation=element.requiredValidation
+
+home.title=Play! JQuery Form Validation Example
+
+annotationJqValidate.title=Demo JqValidate Annotation
+annotationJqValidate.task.legend=Task
+
+create.element=Create element

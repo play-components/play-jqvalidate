@@ -2,7 +2,8 @@
 
 #{jqvalidate.javascripts tagValue:'moreScripts', additionalMethods:true, defaultComponent:true /}
 
-<h1>Play! JQuery Form Validation Example</h1>
+#{set 'title' }&{'annotationJqValidate.title'}#{/set}
+<h1>#{get 'title' /}</h1>
 
 #{if flash.error || flash.success}
 <div id="msg-area" class="alert-box #{if flash.error}alert#{/if}#{else}success#{/else}">
@@ -10,26 +11,44 @@ ${flash.error}${flash.success}
 </div>
 #{/if}
 
-<fieldset>
-<legend>Create a task</legend>
 #{jqvalid.form @Application.saveElement()}
-  	#{jqvalid.field 'task.noValidation'}
+<fieldset>
+<legend>&{'create.element'}</legend>
+  	#{jqvalid.field 'element.noValidation'}
 		<p id="${field.name.slugify()}">
-		  <label>&{field.name}</label>     
-		  <textarea ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" class="${field.errorClass}">${field.value}</textarea>
-		  <label class="error">${field.error}</label>
+		  <label>&{field.name}111</label>     
+		  <textarea ${field?.validationData?.rules?.asAttr()} ${field.validationData?.messages?.asAttr()} id="${field.id}" name="${field.name}" class="${field.errorClass}">${field.value}</textarea>
+		  #{ifError field.name}<label class="error">${field.error}</label>#{/ifError}
 		</p>
-	#{/}
+	#{/jqvalid.field}
   
-    #{jqvalid.field 'task.requiredValidation'}
+    #{jqvalid.field 'element.requiredValidation'}
     <p id="${field.name.slugify()}">
       <label>&{field.name}</label>     
-      <textarea ${field.validationData.rules.asAttr()} ${field.validationData.messages.asAttr()} id="${field.id}" name="${field.name}" class="${field.errorClass}">${field.value}</textarea>
-      <label class="error">${field.error}</label>
+      <textarea ${field?.validationData?.rules?.asAttr()} ${field.validationData?.messages?.asAttr()} id="${field.id}" name="${field.name}" class="${field.errorClass}">${field.value}</textarea>
+      #{ifError field.name}<label class="error">${field.error}</label>#{/ifError}
     </p>
-  #{/}
-	<p>
-		<input type="submit" value='Create Task'>
-	</p>
-#{/jqvalid.form}
+  #{/jqvalid.field}
+  
+   <fieldset>
+    <legend>&{'annotationJqValidate.task.legend'}</legend>
+     #{jqvalid.field 'element.task.details'}
+      <p id="${field.name.slugify()}">
+        <label>&{field.name}</label>     
+        <textarea ${field?.validationData?.rules?.asAttr()} ${field.validationData?.messages?.asAttr()} id="${field.id}" name="${field.name}" class="${field.errorClass}">${field.value}</textarea>
+        #{ifError field.name}<label class="error">${field.error}</label>#{/ifError}
+      </p>
+    #{/jqvalid.field}
+     #{jqvalid.field 'element.task.authorEmail'}
+     <p id="${field.name.slugify()}">
+      <label>&{field.name}</label>    
+      <input type="text" ${field?.validationData?.rules?.asAttr()} ${field.validationData?.messages?.asAttr()} id="${field.id}" name="${field.name}" class="${field.errorClass}" value="${field.value}" >
+       #{ifError field.name}<label class="error">${field.error}</label>#{/ifError}
+     </p>
+    #{/jqvalid.field}
+   </fieldset>
+	<div>
+		<input type="submit" value='Create element'>
+	</div>
 </fieldset>
+#{/jqvalid.form}

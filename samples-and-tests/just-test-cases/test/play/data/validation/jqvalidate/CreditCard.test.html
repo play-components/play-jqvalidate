@@ -1,6 +1,6 @@
 #{selenium 'Credit card field'}
     open('/')
-    assertTitle('')
+    assertTitle('Play! JQuery Form Validation Example')
     type('id=task_creditCardNumber','012345678')
     click('css=input[type="submit"]') 
     assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
