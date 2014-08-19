@@ -2,11 +2,14 @@ language: java
 jdk:
   - oraclejdk7
   - openjdk7
-  - openjdk6
+#  - openjdk6
 env:
-  - PLAY_VERSION=1.2.5 PLAY_DOWNLOAD=http://downloads.typesafe.com/releases/play-1.2.5.zip
-  - PLAY_VERSION=1.2.5.1 PLAY_DOWNLOAD=http://downloads.typesafe.com/play/1.2.5.1/play-1.2.5.1.zip
-  - PLAY_VERSION=1.2.6 PLAY_DOWNLOAD=http://downloads.typesafe.com/play/1.2.6/play-1.2.6.zip
+#  - PLAY_VERSION=1.2.5 PLAY_DOWNLOAD=http://downloads.typesafe.com/releases/play-1.2.5.zip
+#  - PLAY_VERSION=1.2.5.1 PLAY_DOWNLOAD=http://downloads.typesafe.com/play/1.2.5.1/play-1.2.5.1.zip
+#  - PLAY_VERSION=1.2.6 PLAY_DOWNLOAD=http://downloads.typesafe.com/play/1.2.6/play-1.2.6.zip
+  - PLAY_VERSION=1.2.7 PLAY_DOWNLOAD=http://downloads.typesafe.com/play/1.2.7/play-1.2.7.zip
+#  - PLAY_VERSION=1.3.0-RC1 PLAY_DOWNLOAD=http://downloads.typesafe.com/play/1.3.0-RC1/play-1.3.0-RC1.zip
+  
 before_script:
   - wget ${PLAY_DOWNLOAD}
   - unzip -q play-${PLAY_VERSION}.zip

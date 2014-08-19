@@ -1,6 +1,6 @@
 #{selenium 'IP address V4 field'}
     open('/')
-    assertTitle('')
+    assertTitle('Play! JQuery Form Validation Example')
     type('id=task_authorIPv4','125.255.255.2500')
     click('css=input[type="submit"]') 
     assertText('//p[@id="task-authoripv4"]/label[2]','Not a valid IP address')

@@ -345,23 +345,31 @@ public class JqValidateTags extends FastTags {
     Object obj = body.getProperty(pieces[0]);
     if (obj != null) {
       if (pieces.length > 1) {
+        Class<?> clazz = obj.getClass();
         for (int i = 1; i < pieces.length; i++) {
-          try {
-            Field f = obj.getClass().getField(pieces[i]);
-            if (i == (pieces.length - 1)) {
-              field.put("validationData", buildValidationData(f));
+          if (clazz != null) {
+            try {
+              Field clazzField = clazz.getField(pieces[i]);
+              // It's the last piece, we can retrieve annotation on the field
+              if (i == (pieces.length - 1)) {
+                field.put("validationData", buildValidationData(clazzField));
 
-              try {
-                Method getter = obj.getClass().getMethod("get" + JavaExtensions.capFirst(f.getName()));
-                field.put("value", getter.invoke(obj, new Object[0]));
-              } catch (NoSuchMethodException e) {
-                field.put("value", f.get(obj).toString());
+                // Try to get the value of the field
+                if (clazzField != null && obj != null) {
+                  try {
+                    Method getter = obj.getClass().getMethod("get" + JavaExtensions.capFirst(clazzField.getName()));
+                    field.put("value", getter.invoke(obj, new Object[0]));
+                  } catch (NoSuchMethodException e) {
+                    field.put("value", clazzField.get(obj).toString());
+                  }
+                }
+              } else if (clazzField != null) {
+                clazz = clazzField.getType();
+                obj = clazzField.get(obj);
               }
-            } else {
-              obj = f.get(obj);
+            } catch (Exception e) {
+              // if there is a problem reading the field we don't set any value
             }
-          } catch (Exception e) {
-            // if there is a problem reading the field we don't set any value
           }
         }
       } else {

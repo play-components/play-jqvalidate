@@ -1,6 +1,6 @@
 #{selenium 'URL field'}
     open('/')
-    assertTitle('')
+    assertTitle('Play! JQuery Form Validation Example')
     type('id=task_authorUrl','hhttp://www.test/com')
     click('css=input[type="submit"]') 
     assertText('//p[@id="task-authorurl"]/label[2]','Not a valid URL')

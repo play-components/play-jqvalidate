@@ -47,3 +47,17 @@ fieldset {float:left;-moz-border-radius:10px;-o-border-radius:10px;-webkit-borde
     border-color: #970B0E;
     color: white;
 }
+
+ul.navigator {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul.navigator  li { 
+    display: inline; 
+}
+
+ul.navigator  li:not(:last-child)::after{
+    content:' | ';
+}

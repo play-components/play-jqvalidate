@@ -1,6 +1,6 @@
 #{selenium 'Range field'}
     open('/')
-    assertTitle('')
+    assertTitle('Play! JQuery Form Validation Example')
     type('id=task_priority','0')
     click('css=input[type="submit"]') 
     assertText('//p[@id="task-priority"]/label[2]','Not in the range 1 through 10')
