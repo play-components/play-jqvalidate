@@ -1,4 +1,4 @@
-self: play -> jqvalidate 1.4-SNAPSHOT
+self: play -> jqvalidate 1.4
 
 require:
     - play
