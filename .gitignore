@@ -24,6 +24,8 @@ test-result
 logs
 server.pid
 dist
+bower_components
+node_modules
 
 # Example
 samples-and-tests/jqvalidate-example/lib

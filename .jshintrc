@@ -1,0 +1,26 @@
+{
+    "nomen": false,
+    "evil": true,
+    "expr": true,
+    "asi": true,
+    "lastsemic": true,  
+    "eqeqeq": false,
+    
+    "debug": true,
+	"curly": true,
+	"immed": true,
+	"latedef": true,
+	"newcap": true,
+	"noarg": true,
+	"sub": true,
+	"undef": true,
+	"eqnull": true,
+	"browser": true,
+	"globals": {
+		"jQuery": true,
+		"$": true,
+		"console": true,
+        "module": true,
+        "document": true
+	}
+}
