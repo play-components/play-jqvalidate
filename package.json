@@ -1,14 +1,14 @@
 {
   "name": "jqvalidate",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Client-side form validation based on your Play framework model annotations.",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "0.10.0",
-    "grunt-contrib-uglify": "0.6.0",
+    "grunt-contrib-jshint": "0.11.3",
+    "grunt-contrib-uglify": "0.11.0",
     "grunt-compare-size": "0.4.0",
-    "grunt-bowercopy": "1.1.0"
+    "grunt-bowercopy": "1.2.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
