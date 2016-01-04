@@ -24,7 +24,7 @@
     "tests"
   ],
   "dependencies": {
-    "jquery-validation": "1.13.1"
+    "jquery-validation": "1.14.0"
   },
   "install" : {
     "path" : "bower_components"
