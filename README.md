@@ -1,4 +1,4 @@
-# play-jqvalidate [![Build Status](https://travis-ci.org/xael-fry/play-jqvalidate.svg?branch=master)](https://travis-ci.org/xael-fry/play-jqvalidate)[![Dependency Status](https://gemnasium.com/xael-fry/play-jqvalidate.svg)](https://gemnasium.com/xael-fry/play-jqvalidate)
+# play-jqvalidate [![Build Status](https://travis-ci.org/xael-fry/play-jqvalidate.svg?branch=master)](https://travis-ci.org/xael-fry/play-jqvalidate) [![Dependency Status](https://gemnasium.com/xael-fry/play-jqvalidate.svg)](https://gemnasium.com/xael-fry/play-jqvalidate)
 
 Client-side form validation based on your [Play](http://playframework.org) model validation annotations.
 
