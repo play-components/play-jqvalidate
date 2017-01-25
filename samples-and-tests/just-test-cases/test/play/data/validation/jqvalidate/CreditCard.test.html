@@ -1,32 +1,52 @@
 #{selenium 'Credit card field'}
     open('/')
     assertTitle('Play! JQuery Form Validation Example')
+    
     type('id=task_creditCardNumber','012345678')
+    focus('id=task_color') 
     click('css=input[type="submit"]') 
-    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+    waitForText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
 
-    type('id=task_creditCardNumber','01234567891234567890')
-    click('css=input[type="submit"]') 
-    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+    type('id=task_creditCardNumber','01234567890123456789')
+    focus('id=task_color') 
+    click('css=input[type="submit"]')
+    waitForText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
     
     type('id=task_creditCardNumber','a012345678912456')
+    focus('id=task_color') 
     click('css=input[type="submit"]') 
-    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+    waitForText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
     
     type('id=task_creditCardNumber','0123-4567-8912-456')
+    focus('id=task_color') 
     click('css=input[type="submit"]') 
-    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+    waitForText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
     
     type('id=task_creditCardNumber','0123/4567/8912/456')
+    focus('id=task_color') 
     click('css=input[type="submit"]') 
-    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+    waitForText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
     
     type('id=task_creditCardNumber','012345678912456*')
+    focus('id=task_color') 
     click('css=input[type="submit"]') 
-    assertText('//p[@id="task-creditcardnumber"]/label[2]','Must match ^[0-9]{10,19}$')
+    waitForText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
     
-    type('id=task_creditCardNumber','012345678912456')
-        
+    type('id=task_creditCardNumber','4111111111111110')
+    focus('id=task_color') 
+    click('css=input[type="submit"]') 
+    waitForText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
+    assertText('//p[@id="task-creditcardnumber"]/label[2]','Please enter a valid credit card number.')
+    
+    type('id=task_creditCardNumber','4111111111111111')
+      
+    // add others required fields   
     type('id=task_priority','8')
     type('id=task_details','details')
     type('id=task_authorEmail','test@test.com')
