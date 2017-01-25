@@ -2,4 +2,5 @@
 # You can specialize this file for each language.
 # For exemple, for french create a messages.fr file
 
-validation.hexcolor=Must be a valid a valid HTML color code
+validation.hexcolor=Must be a valid a valid HTML color code.
+validation.creditcardnumber=Please enter a valid credit card number.

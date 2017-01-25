@@ -1,7 +1,5 @@
 package tags.jqvalidate;
 
-import groovy.lang.Closure;
-
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -10,6 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import data.validation.jqvalidate.CreditCardNumber;
+import data.validation.jqvalidate.HexColor;
+import data.validation.jqvalidate.JqValidate;
+import groovy.lang.Closure;
 import play.Play;
 import play.data.validation.Email;
 import play.data.validation.IPv4Address;
@@ -30,8 +32,6 @@ import play.mvc.Scope.Flash;
 import play.templates.FastTags;
 import play.templates.GroovyTemplate.ExecutableTemplate;
 import play.templates.JavaExtensions;
-import data.validation.jqvalidate.HexColor;
-import data.validation.jqvalidate.JqValidate;
 
 @FastTags.Namespace("jqvalid")
 public class JqValidateTags extends FastTags {
@@ -103,6 +103,17 @@ public class JqValidateTags extends FastTags {
     JqValidate jqValidate = f.getAnnotation(JqValidate.class);
 
     // ----------------------------
+    // Credit card number
+    // ----------------------------
+    CreditCardNumber creditCardNumber = f.getAnnotation(CreditCardNumber.class);
+    if (creditCardNumber != null && isRuleAllowed(jqValidate, CreditCardNumber.class)) {
+      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "creditcard", "true");
+      if (creditCardNumber.message() != null) {
+        validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "creditcard", Messages.get(creditCardNumber.message()));
+      }
+    }
+
+    // ----------------------------
     // Required
     // ----------------------------
     Required required = f.getAnnotation(Required.class);
@@ -143,8 +154,8 @@ public class JqValidateTags extends FastTags {
     if (range != null && isRuleAllowed(jqValidate, Range.class)) {
       Integer valueMin = (int) range.min();
       Integer valueMax = (int) range.max();
-      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "range", "[" + valueMin.toString() + ", " + valueMax.toString()
-          + "]");
+      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "range",
+          "[" + valueMin.toString() + ", " + valueMax.toString() + "]");
       if (range.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "range",
             Messages.get(range.message(), null, range.min(), range.max()));
@@ -243,9 +254,8 @@ public class JqValidateTags extends FastTags {
     Phone phone = f.getAnnotation(Phone.class);
     // Match must not be defined
     if (phone != null && match == null && isRuleAllowed(jqValidate, Phone.class)) {
-      validationData.rules
-          .put(RULE_ATTRIBUTE_PREFIX + "pattern",
-              "^([\\+][0-9]{1,3}([ \\.\\-]))?([\\(]{1}[0-9]{2,6}[\\)])?([0-9 \\.\\-/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$");
+      validationData.rules.put(RULE_ATTRIBUTE_PREFIX + "pattern",
+          "^([\\+][0-9]{1,3}([ \\.\\-]))?([\\(]{1}[0-9]{2,6}[\\)])?([0-9 \\.\\-/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$");
       if (phone.message() != null) {
         validationData.messages.put(MESSAGE_ATTRIBUTE_PREFIX + "pattern", Messages.get(phone.message()));
       }
@@ -270,8 +280,8 @@ public class JqValidateTags extends FastTags {
    * Test if the rule must be applied. <br>
    * The rule will be applied if:
    * <ul>
-   * <li>The tag is not defined (all rules will be applied this way we keep the
-   * compatibility with the previous versions)</li>
+   * <li>The tag is not defined (all rules will be applied this way we keep the compatibility with the previous
+   * versions)</li>
    * <li>The rules is in the allowed list</li>
    * <li>The rules is not in the forbidden list</li>
    * </ul>
@@ -336,8 +346,8 @@ public class JqValidateTags extends FastTags {
     field.put("name", _arg);
     field.put("id", _arg.replace('.', '_'));
     field.put("flash", Flash.current().get(_arg));
-    field.put("flashArray", field.get("flash") != null && !field.get("flash").toString().isEmpty() ? field.get("flash")
-        .toString().split(",") : new String[0]);
+    field.put("flashArray", field.get("flash") != null && !field.get("flash").toString().isEmpty()
+        ? field.get("flash").toString().split(",") : new String[0]);
     field.put("error", Validation.error(_arg));
     field.put("errorClass", field.get("error") != null ? ERROR_CLASS : "");
 
