@@ -1,12 +1,12 @@
 {
   "name": "jqvalidate",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Client-side form validation based on your Play framework model annotations.",
   "dependencies": {},
   "devDependencies": {
     "grunt": "1.0.1",
     "grunt-contrib-jshint": "1.1.0",
-    "grunt-contrib-uglify": "2.0.0",
+    "grunt-contrib-uglify": "2.1.0",
     "grunt-compare-size": "0.4.2",
     "grunt-bowercopy": "1.2.4"
   },
