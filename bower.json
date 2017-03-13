@@ -1,6 +1,6 @@
 {
   "name": "jqvalidate",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "homepage": "https://github.com/xael-fry/play-jqvalidate",
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
     "tests"
   ],
   "dependencies": {
-    "jquery-validation": "1.15.0"
+    "jquery-validation": "1.16.0"
   },
   "install" : {
     "path" : "bower_components"
