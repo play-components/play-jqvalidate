@@ -1,0 +1,20 @@
+#{selenium 'Required field'}
+    open('/')
+    assertTitle('Play! JQuery Form Validation Example')
+    type('id=task_priority','')
+    click('css=input[type="submit"]') 
+    waitForVisible('//p[@id="task-details"]/label[2]')  
+    assertText('//p[@id="task-details"]/label[2]','Required')
+ //FIXME Get Not in range error instead of the expected "required"   
+ //   assertText('//p[@id="task-priority"]/label[2]','Required')
+    assertText('//p[@id="task-authoremail"]/label[2]','Required')
+    assertText('//p[@id="task-authorurl"]/label[2]','Required')
+    
+    type('id=task_details','details')
+    type('id=task_priority','5')
+    type('id=task_authorEmail','test@test.com')
+    type('id=task_authorUrl','http://www.test/com')
+    clickAndWait('css=input[type="submit"]')
+    waitForTextPresent('', ".Data OK.")
+    assertTextPresent('','.Data OK.')
+#{/selenium}

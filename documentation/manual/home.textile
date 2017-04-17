@@ -1,0 +1,17 @@
+h1. JQuery Validation [jqvalidate] module
+
+This is a module for Play! framework to have a client-side form validation via jQuery, based on your
+Play framework model annotations.
+
+
+h3. Getting started
+
+To install jqvalidate, you can use the modules repository:
+
+play install jqvalidate-<required version>
+
+
+h3. Examples
+
+Check the samples-and-tests folder for examples of all the code required below.
+

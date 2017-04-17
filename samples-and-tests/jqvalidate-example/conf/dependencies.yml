@@ -1,0 +1,23 @@
+# Application dependencies
+
+require:
+    - play
+    - play -> gae 1.6.0
+    - play -> siena 2.0.7
+    - play -> jqvalidate latest.integration
+
+repositories:
+    - playModules:
+        type:       chain
+        using:
+            - playLocalModules:
+                type:       local
+                descriptor: "${application.path}/../../../[module]/conf/dependencies.yml"
+                artifact:   "${application.path}/../../../[module]"
+                contains:
+                    - play -> jqvalidate *
+            - playContributedModules:
+                type:       http
+                descriptor: "http://www.playframework.com/modules/repo/[module]/[revision]/dependencies.yml"
+                artifact: "http://www.playframework.com/modules/[module]-[revision].zip"
+                

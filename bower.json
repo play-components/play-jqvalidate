@@ -1,0 +1,32 @@
+{
+  "name": "jqvalidate",
+  "version": "1.0.7",
+  "homepage": "https://github.com/xael-fry/play-jqvalidate",
+  "repository": {
+    "type": "git",
+   "url": "git@github.com:xael-fry/play-jqvalidate.git"
+  },
+  "authors": [
+    "Alexandre Chatiron <alexandre@payxpert.com>"
+  ],
+  "description": "Client-side form validation based on your Play framework model annotations.",
+  "keywords": [
+    "forms",
+    "validation",
+    "validate"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-validation": "1.16.0"
+  },
+  "install" : {
+    "path" : "bower_components"
+  }
+}

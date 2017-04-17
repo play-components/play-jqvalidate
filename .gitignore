@@ -1,0 +1,33 @@
+# General temp files
+.DS_Store
+*.ser
+*.pyc
+
+# IDE and editors
+*~
+.idea
+nbproject
+eclipse
+.amateras
+.settings
+.classpath
+.project
+
+=======
+.classpath
+.project
+.settings
+tmp
+test-result
+*.pyc
+*.class
+logs
+server.pid
+dist
+bower_components
+node_modules
+
+# Example
+samples-and-tests/jqvalidate-example/lib
+samples-and-tests/jqvalidate-example/modules
+

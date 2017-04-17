@@ -1,0 +1,47 @@
+#{selenium 'Annotation JqValidate'}
+    open('Application/annotationJqValidate')
+    assertTitle('Demo JqValidate Annotation')
+    
+    type('id=element_noValidation','')   
+    type('id=element_requiredValidation','')
+    type('id=element_task_details','')
+    type('id=element_task_authorEmail','')
+        
+    click('css=input[type="submit"]') 
+         
+    waitForVisible('//p[@id="element-requiredvalidation"]/label[2]')     
+    waitForText('//p[@id="element-requiredvalidation"]/label[2]', 'Required')  
+                    
+    // Check validation not present on no client validation field
+    assertTextNotPresent('//p[@id="element-novalidation"]/label[2]','Required')
+    assertTextNotPresent('//p[@id="element-novalidation"]/label[2]','Must match [A-Z]{3}')
+    assertTextNotPresent('//p[@id="element-novalidation"]/label[2]','Invalid email address')
+    
+    // Check required only field
+    waitForText('//p[@id="element-requiredvalidation"]/label[2]', 'Required')  
+    
+    assertText('//p[@id="element-requiredvalidation"]/label[2]','Required')
+    assertTextNotPresent('//p[@id="element-requiredvalidation"]/label[2]','Must match [A-Z]{3}')
+    assertTextNotPresent('//p[@id="element-requiredvalidation"]/label[2]','Invalid email address')
+
+    // Check validation on other elements           
+    waitForText('//p[@id="element-task-details"]/label[2]', 'Required') 
+    assertText('//p[@id="element-task-details"]/label[2]', 'Required')
+    
+    waitForText('//p[@id="element-task-authoremail"]/label[2]', 'Required') 
+    assertText('//p[@id="element-task-authoremail"]/label[2]','Required')
+            
+    type('id=element_noValidation', '') 
+    type('id=element_requiredValidation','required validation')
+    type('id=element_task_details','New task')
+    type('id=element_task_authorEmail', 'author@mail.com')
+    
+    clickAndWait('css=input[type="submit"]')
+    
+    waitForTextPresent('', ".Data KO.")
+    assertTextPresent('','.Data KO.')
+    
+    assertText('//p[@id="element-novalidation"]/label[2]','Required')
+//    assertText('//p[@id="element-requiredvalidation"]/label[2]','Must match [A-Z]{3}')
+//    assertTextNotPresent('//p[@id="element-task-authoremail"]/label[2]','Invalid email address') 
+#{/selenium}

@@ -1,0 +1,4 @@
+self: play -> jqvalidate 1.7
+
+require:
+    - play

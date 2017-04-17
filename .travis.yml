@@ -1,0 +1,26 @@
+language: java
+jdk:
+  - openjdk7
+env:
+  - PLAY_VERSION=1.2.7 PLAY_DOWNLOAD=http://downloads.typesafe.com/play/1.2.7/play-1.2.7.zip
+#  - PLAY_VERSION=1.4.1 PLAY_DOWNLOAD=http://downloads.typesafe.com/play/1.4.1/play-1.4.1.zip
+#before_install:
+#  - cat /etc/hosts # optionally check the content *before*
+#  - sudo hostname "$(hostname | cut -c1-63)"
+#  - sed -e "s/^\\(127\\.0\\.0\\.1.*\\)/\\1 $(hostname | cut -c1-63)/" /etc/hosts | sudo tee /etc/hosts
+#  - cat /etc/hosts # optionally check the content *after* 
+addons:
+  hosts:
+    - myshorthost
+  hostname: myshorthost  
+before_script:
+  - wget ${PLAY_DOWNLOAD}
+  - unzip -q play-${PLAY_VERSION}.zip
+script: 
+  - ant test -Dplay.path=play-${PLAY_VERSION}
+after_failure: 
+    cat ./samples-and-tests/just-test-cases/test-result/*.failed.html
+notifications:
+  email:
+    on_success: change
+    on_failure: always

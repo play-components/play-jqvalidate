@@ -1,0 +1,26 @@
+# Application dependencies
+
+require:
+    - play
+    - play -> jqvalidate latest.integration
+
+repositories:
+    - playModules:
+        type:       chain
+        using:
+            - playLocalModules:
+                type:       local
+                descriptor: "${application.path}/../../../[module]/conf/dependencies.yml"
+                artifact:   "${application.path}/../../../[module]"
+                contains:
+                    - play -> jqvalidate *
+            - playLocalModules2:
+                type:       local
+                descriptor: "${application.path}/../../../play-[module]/conf/dependencies.yml"
+                artifact:   "${application.path}/../../../play-[module]"
+                contains:
+                    - play -> jqvalidate *
+            - playContributedModules:
+                type:       http
+                descriptor: "http://www.playframework.org/modules/repo/[module]/[revision]/dependencies.yml"
+                artifact: "http://www.playframework.org/modules/[module]-[revision].zip"
